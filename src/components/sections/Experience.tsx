@@ -56,6 +56,7 @@ export default function Experience() {
   const { mouseX, mouseY } = useSpatial();
   const { progress } = useSceneProgress();
   const [selectedSkill, setSelectedSkill] = useState<typeof skills[0] | null>(null);
+  const [selectedItem, setSelectedItem] = useState<typeof items[0] | null>(null);
 
   const rotateX = useTransform(mouseY, [-1, 1], [0.3, -0.3]);
   const rotateY = useTransform(mouseX, [-1, 1], [-0.3, 0.3]);
@@ -86,7 +87,8 @@ export default function Experience() {
             {items.map((item) => (
               <div
                 key={item.title}
-                className="flex gap-6 md:gap-8 group"
+                className="flex gap-6 md:gap-8 group cursor-pointer"
+                onClick={() => setSelectedItem(item)}
               >
                 <div className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center p-3 transition-all duration-500 group-hover:border-electric/40 ${item.bgColor}`}>
                   <div className="relative w-full h-full">
@@ -99,6 +101,7 @@ export default function Experience() {
                     <p className="text-electric font-mono text-[9px] uppercase tracking-[0.2em] mt-2">{item.subtitle}</p>
                   </div>
                   <p className="text-ghost/60 text-xs md:text-sm leading-relaxed max-w-sm font-medium uppercase tracking-wide">{item.description}</p>
+                  <span className="inline-block text-[9px] font-mono text-electric/40 uppercase tracking-widest border-b border-electric/20 pb-0.5 opacity-0 group-hover:opacity-100 transition-opacity">Read Full Story</span>
                 </div>
               </div>
             ))}
@@ -176,63 +179,75 @@ export default function Experience() {
         </div>
       </div>
 
-      {/* Expanded View Modal */}
-      {selectedSkill && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedSkill(null)}
-            className="absolute inset-0 bg-obsidian/95 backdrop-blur-xl"
-          />
-          <motion.div
-            layoutId={`skill-${selectedSkill.name}`}
-            className="relative w-full max-w-2xl bg-onyx border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
-            data-lenis-prevent="true"
-          >
-            <div className="p-8 md:p-12 space-y-8">
-              <div className="flex justify-between items-start">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-electric/10 flex items-center justify-center">
-                      <Activity className="w-6 h-6 text-electric" />
+      {/* Expanded View Modal (Skills & Experience) */}
+      <AnimatePresence>
+        {(selectedSkill || selectedItem) && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => { setSelectedSkill(null); setSelectedItem(null); }}
+              className="absolute inset-0 bg-obsidian/95 backdrop-blur-xl"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-2xl bg-onyx border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+              data-lenis-prevent="true"
+            >
+              <div className="p-8 md:p-12 space-y-8">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-electric/10 flex items-center justify-center">
+                        {selectedSkill ? <Activity className="w-6 h-6 text-electric" /> : <Briefcase className="w-6 h-6 text-electric" />}
+                      </div>
+                      <span className="text-sm font-mono text-electric uppercase tracking-widest">
+                        {selectedSkill ? selectedSkill.level : selectedItem?.subtitle}
+                      </span>
                     </div>
-                    <span className="text-sm font-mono text-electric uppercase tracking-widest">{selectedSkill.level}</span>
+                    <h3 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">
+                      {selectedSkill ? selectedSkill.name : selectedItem?.title}
+                    </h3>
                   </div>
-                  <h3 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">{selectedSkill.name}</h3>
-                </div>
-                <button
-                  onClick={() => setSelectedSkill(null)}
-                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="space-y-8">
-                <div className="space-y-3">
-                  <h4 className="text-xs font-mono text-ghost/40 uppercase tracking-[0.3em]">Technical Application</h4>
-                  <p className="text-ghost/80 text-lg md:text-2xl font-light leading-relaxed">
-                    {selectedSkill.useCase}
-                  </p>
+                  <button
+                    onClick={() => { setSelectedSkill(null); setSelectedItem(null); }}
+                    className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
-                  <div className="space-y-2">
-                    <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Status</span>
-                    <span className="block text-sm font-bold uppercase text-electric">{selectedSkill.status}</span>
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-mono text-ghost/40 uppercase tracking-[0.3em]">
+                      {selectedSkill ? "Technical Application" : "The Experience"}
+                    </h4>
+                    <p className="text-ghost/80 text-lg md:text-2xl font-light leading-relaxed">
+                      {selectedSkill ? selectedSkill.useCase : selectedItem?.details}
+                    </p>
                   </div>
-                  <div className="space-y-2">
-                    <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Focus</span>
-                    <span className="block text-sm font-bold uppercase text-white">Full-Stack Development</span>
-                  </div>
+
+                  {selectedSkill && (
+                    <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+                      <div className="space-y-2">
+                        <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Status</span>
+                        <span className="block text-sm font-bold uppercase text-electric">{selectedSkill.status}</span>
+                      </div>
+                      <div className="space-y-2">
+                        <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Focus</span>
+                        <span className="block text-sm font-bold uppercase text-white">Full-Stack Development</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
