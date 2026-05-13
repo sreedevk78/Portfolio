@@ -92,7 +92,7 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
           </motion.div>
         </motion.div>
 
-        <div className="fixed inset-0 pointer-events-none z-40">
+        <div className="fixed inset-0 pointer-events-none z-[100]">
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20" />
           <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]" />
           {overlay}

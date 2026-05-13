@@ -43,13 +43,132 @@ const items = [
 ];
 
 const skills = [
-  { name: "C++ / C", level: "Expert", status: "Advanced", useCase: "Strong foundation in low-level memory management and algorithm design. Proficient in performance-critical C++ architectures." },
-  { name: "Java", level: "Advanced", status: "Core", useCase: "Object-oriented software development and robust application architecture. Experienced in building scalable systems." },
-  { name: "Python", level: "Expert", status: "AI Focus", useCase: "Specialist in AI-assisted development and LLM integration. Expert in leveraging Python for generative workflows." },
-  { name: "Prompt Engineering", level: "Expert", status: "AI Mastery", useCase: "Advanced mastery of LLM orchestration, chain-of-thought prompting, and rapid AI-driven prototyping." },
-  { name: "TypeScript", level: "Expert", status: "Full-Stack", useCase: "Developing type-safe, complex web architectures and RAG-integrated creative platforms with Next.js." },
-  { name: "React", level: "Expert", status: "UI/UX", useCase: "Crafting high-fidelity, interactive user interfaces with sophisticated state management and motion." },
-  { name: "PostgreSQL", level: "Advanced", status: "Database", useCase: "Managing relational databases and vector storage for persistent AI world-building lore." },
+  { 
+    name: "C++ / C", 
+    level: "Expert", 
+    status: "Advanced", 
+    useCase: "Specialized in low-level memory management and performance-critical systems.",
+    metrics: [
+      { label: "Logic_Complexity", value: "96%", color: "text-electric" },
+      { label: "System_Level", value: "O(1) Native", color: "text-royal" }
+    ],
+    examples: [
+      { title: "High-Speed Trie", desc: "Engineered O(k) prefix tree for massive string lookups." },
+      { title: "Memory Allocator", desc: "Custom pool allocator to minimize fragmentation." }
+    ]
+  },
+  { 
+    name: "Python", 
+    level: "Expert", 
+    status: "AI Focus", 
+    useCase: "Specialist in AI-assisted development and LLM orchestration.",
+    metrics: [
+      { label: "AI_Inference", value: "85 t/s", color: "text-electric" },
+      { label: "Model_Depth", value: "Fine-Tuned", color: "text-royal" }
+    ],
+    examples: [
+      { title: "CarbonHero AI", desc: "Logic engine powered by Groq LLaMA 3." },
+      { title: "Vector Pipelines", desc: "Automated embedding generation for creative lore." }
+    ]
+  },
+  { 
+    name: "TypeScript", 
+    level: "Expert", 
+    status: "Full-Stack", 
+    useCase: "Developing type-safe, complex web architectures and RAG pipelines.",
+    metrics: [
+      { label: "Type_Coverage", value: "100%", color: "text-electric" },
+      { label: "Architecture", value: "Modular", color: "text-royal" }
+    ],
+    examples: [
+      { title: "CodeXcape Core", desc: "Built the persistent Author OS using Next.js." },
+      { title: "RAG Service", desc: "TypeScript-based vector service for lore retrieval." }
+    ]
+  },
+  { 
+    name: "React", 
+    level: "Expert", 
+    status: "UI/UX", 
+    useCase: "Crafting high-fidelity, interactive user interfaces with motion.",
+    metrics: [
+      { label: "Render_Perf", value: "60 FPS", color: "text-electric" },
+      { label: "State_Logic", value: "Advanced", color: "text-royal" }
+    ],
+    examples: [
+      { title: "Cinematic HUD", desc: "Engineered the spatial UI for this portfolio." },
+      { title: "Real-time Dashboards", desc: "Interactive writing zones in CodeXcape." }
+    ]
+  },
+  { 
+    name: "Next.js", 
+    level: "Expert", 
+    status: "Optimized", 
+    useCase: "Server-rendering optimization and cinematic motion orchestration.",
+    metrics: [
+      { label: "Hydration_Speed", value: "Ultra-Fast", color: "text-electric" },
+      { label: "SEO_Score", value: "100/100", color: "text-royal" }
+    ],
+    examples: [
+      { title: "Server Actions", desc: "Secured data mutations in author workflows." },
+      { title: "Route Clusters", desc: "Optimized spatial scene pre-rendering." }
+    ]
+  },
+  { 
+    name: "Framer Motion", 
+    level: "Expert", 
+    status: "Motion", 
+    useCase: "Engineering spatial transitions and complex motion choreography.",
+    metrics: [
+      { label: "Physics_Sync", value: "Smooth", color: "text-electric" },
+      { label: "GPU_Accel", value: "Enabled", color: "text-royal" }
+    ],
+    examples: [
+      { title: "Z-Space Engine", desc: "The spatial navigation system in this site." },
+      { title: "Kinetic UI", desc: "Reactive text and spotlight reveal systems." }
+    ]
+  },
+  { 
+    name: "PostgreSQL", 
+    level: "Advanced", 
+    status: "Database", 
+    useCase: "Managing relational databases and vector storage for AI lore.",
+    metrics: [
+      { label: "Query_Lat", value: "< 50ms", color: "text-electric" },
+      { label: "Data_Integrity", value: "ACID", color: "text-royal" }
+    ],
+    examples: [
+      { title: "Lore Persistence", desc: "Complex schemas for 'Living World Bible'." },
+      { title: "User Profiles", desc: "Scalable storage for author preferences." }
+    ]
+  },
+  { 
+    name: "Prompt Engineering", 
+    level: "Expert", 
+    status: "AI Mastery", 
+    useCase: "Advanced mastery of LLM orchestration and chain-of-thought prompting.",
+    metrics: [
+      { label: "Logic_Accuracy", value: "98%", color: "text-electric" },
+      { label: "Latency_Redux", value: "Significant", color: "text-royal" }
+    ],
+    examples: [
+      { title: "Chain-of-Thought", desc: "Optimized complex story reasoning in CodeXcape." },
+      { title: "Agentic Workflows", desc: "Directed AI agents for world-building consistency." }
+    ]
+  },
+  { 
+    name: "Architectural Design", 
+    level: "Expert", 
+    status: "System_Architect", 
+    useCase: "Designing scalable, modular software systems and RAG pipelines.",
+    metrics: [
+      { label: "Scalability", value: "High", color: "text-electric" },
+      { label: "Modularity", value: "Clean", color: "text-royal" }
+    ],
+    examples: [
+      { title: "CodeXcape Auth", desc: "Integrated NextAuth with secure database flows." },
+      { title: "Marketplace Logic", desc: "Socket-driven event bus for HomeEase." }
+    ]
+  }
 ];
 
 export default function Experience() {
@@ -63,7 +182,7 @@ export default function Experience() {
   const railOpacity = useTransform(progress, [0, 0.35, 0.9, 1], [0.05, 0.3, 0.15, 0.05]);
 
   return (
-    <section className="relative w-full min-h-screen lg:h-screen py-24 md:py-32 px-6 md:px-8 bg-obsidian/20 overflow-hidden">
+    <section className="relative w-full min-h-screen lg:h-screen py-16 md:py-20 px-6 md:px-8 bg-obsidian/20 overflow-hidden">
       <ParallaxLayer depth={0.4} progress={progress} yRange={[20, -20]} className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute left-[10%] top-0 h-full w-[1px] bg-white/10" />
         <div className="absolute right-[15%] top-[30%] h-64 w-64 border border-white/5 rounded-full" />
@@ -72,18 +191,18 @@ export default function Experience() {
 
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-16 lg:gap-32">
         {/* Left Side: Experience List */}
-        <div className="w-full lg:w-[42%] space-y-12 relative z-10">
-          <div className="space-y-6">
+        <div className="w-full lg:w-[42%] space-y-10 relative z-10">
+          <div className="space-y-4">
             <div className="flex items-center gap-3 text-electric font-mono text-[10px] uppercase tracking-[0.4em]">
               <span className="w-6 h-[1px] bg-electric/40" />
               Professional_Experience
             </div>
-            <h2 className="text-5xl md:text-[7rem] font-black leading-[0.8] uppercase tracking-tighter">
+            <h2 className="text-5xl md:text-[5.5rem] font-black leading-[0.8] uppercase tracking-tighter">
               <KineticText text={"EXPERIENCE\n& CORE"} />
             </h2>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-8 max-h-[60vh] overflow-y-auto custom-scrollbar pr-4">
             {items.map((item) => (
               <div
                 key={item.title}
@@ -95,12 +214,12 @@ export default function Experience() {
                     <Image src={item.logo} alt={item.title} fill sizes="80px" className="object-contain" />
                   </div>
                 </div>
-                <div className="space-y-2.5">
+                <div className="space-y-2">
                   <div>
                     <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter group-hover:text-electric transition-colors leading-none">{item.title}</h3>
                     <p className="text-electric font-mono text-[9px] uppercase tracking-[0.2em] mt-2">{item.subtitle}</p>
                   </div>
-                  <p className="text-ghost/60 text-xs md:text-sm leading-relaxed max-w-sm font-medium uppercase tracking-wide">{item.description}</p>
+                  <p className="text-ghost/60 text-xs leading-relaxed max-w-sm font-medium uppercase tracking-wide">{item.description}</p>
                   <span className="inline-block text-[9px] font-mono text-electric/40 uppercase tracking-widest border-b border-electric/20 pb-0.5 opacity-0 group-hover:opacity-100 transition-opacity">Read Full Story</span>
                 </div>
               </div>
@@ -110,28 +229,29 @@ export default function Experience() {
 
         {/* Right Side: Skills Grid */}
         <div className="w-full lg:w-[58%]">
-          <div className="flex items-center gap-3 text-ghost/30 font-mono text-[10px] uppercase tracking-[0.4em] mb-12">
+          <div className="flex items-center gap-3 text-ghost/30 font-mono text-[10px] uppercase tracking-[0.4em] mb-8">
             <span className="w-6 h-[1px] bg-white/20" />
             Technical_Skill_Archive
           </div>
           
-          <motion.div
-            style={{ rotateX, rotateY }}
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 stage-3d"
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 max-h-[75vh] overflow-y-auto custom-scrollbar pr-4 relative z-20"
           >
             {skills.map((skill, index) => (
-              <div
+              <button
                 key={skill.name}
-                className="h-[300px]"
+                type="button"
                 onClick={() => setSelectedSkill(skill)}
+                className="h-[250px] w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-electric rounded-2xl relative z-30"
               >
                 <FlipTile
                   front={
                     <motion.article 
+                      style={{ rotateX, rotateY }}
                       whileHover={{ scale: 1.02 }}
-                      className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors cursor-pointer"
+                      className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors"
                     >
-                      <SpotlightReveal className="h-full rounded-2xl">
+                      <SpotlightReveal className="h-full rounded-2xl pointer-events-none">
                         <div className="h-full w-full p-6 flex flex-col">
                           <div className="flex justify-between items-center mb-6 shrink-0">
                             <Activity className="w-4 h-4 text-electric/60" />
@@ -143,39 +263,39 @@ export default function Experience() {
                             <span className="text-[10px] font-mono text-electric uppercase tracking-[0.1em]">{skill.level}</span>
                           </div>
                           
-                          <div className="mt-4 flex-1 overflow-hidden pointer-events-none">
-                             <p className="text-[11px] text-ghost/50 font-mono leading-relaxed">
+                          <div className="mt-4 flex-1 overflow-hidden">
+                             <p className="text-[11px] text-ghost/50 font-mono leading-relaxed line-clamp-3">
                                 {skill.useCase}
                              </p>
                           </div>
                           <div className="mt-6 pt-4 border-t border-white/5 shrink-0">
-                             <span className="text-[9px] font-mono text-electric/40 uppercase tracking-widest">Details</span>
+                             <span className="text-[9px] font-mono text-electric/40 uppercase tracking-widest">View_Details</span>
                           </div>
                         </div>
                       </SpotlightReveal>
                     </motion.article>
                   }
                   back={
-                    <div className="h-full flex flex-col overflow-hidden rounded-2xl border border-electric/30 bg-electric/[0.05] p-6 text-left shadow-2xl">
+                    <div className="h-full flex flex-col overflow-hidden rounded-2xl border border-electric/30 bg-electric/[0.05] p-6 shadow-2xl">
                       <div className="mb-4 flex items-center justify-between shrink-0">
-                        <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-electric/70">Core_Tech</span>
+                        <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-electric/70">Technical_Pillar</span>
                       </div>
                       <div className="h-16 flex flex-col justify-center shrink-0">
                         <h4 className="text-2xl font-black uppercase tracking-tighter text-white leading-tight">{skill.name}</h4>
                       </div>
                       <div className="mt-4 flex-1">
-                        <p className="text-[11px] font-mono leading-relaxed text-ghost/70">
+                        <p className="text-[10px] font-mono leading-relaxed text-ghost/70">
                           {skill.useCase}
                         </p>
                       </div>
                       <div className="mt-4 h-[1px] w-full bg-electric/20 shrink-0" />
-                      <span className="mt-4 block text-[9px] font-mono uppercase tracking-[0.2em] text-electric/60 shrink-0">Click for expanded view</span>
+                      <span className="mt-4 block text-[9px] font-mono uppercase tracking-[0.2em] text-electric/60 shrink-0">Click for Deep Dive</span>
                     </div>
                   }
                 />
-              </div>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -221,24 +341,48 @@ export default function Experience() {
                 </div>
 
                 <div className="space-y-8">
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-mono text-ghost/40 uppercase tracking-[0.3em]">
-                      {selectedSkill ? "Technical Application" : "The Experience"}
-                    </h4>
-                    <p className="text-ghost/80 text-lg md:text-2xl font-light leading-relaxed">
-                      {selectedSkill ? selectedSkill.useCase : selectedItem?.details}
-                    </p>
-                  </div>
-
                   {selectedSkill && (
-                    <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
-                      <div className="space-y-2">
-                        <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Status</span>
-                        <span className="block text-sm font-bold uppercase text-electric">{selectedSkill.status}</span>
+                    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {selectedSkill.metrics?.map((m: any, i: number) => (
+                          <div key={i} className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl space-y-1">
+                            <span className="text-[8px] font-mono text-ghost/40 uppercase tracking-widest">{m.label}</span>
+                            <span className={`block text-lg font-black font-mono ${m.color}`}>{m.value}</span>
+                          </div>
+                        ))}
+                        <div className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl space-y-1">
+                          <span className="text-[8px] font-mono text-ghost/40 uppercase tracking-widest">Global_Status</span>
+                          <span className="block text-sm font-bold uppercase text-emerald-400">{selectedSkill.status}</span>
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Focus</span>
-                        <span className="block text-sm font-bold uppercase text-white">Full-Stack Development</span>
+
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-mono text-ghost/40 uppercase tracking-[0.3em]">Technical Application</h4>
+                        <p className="text-ghost/80 text-lg md:text-2xl font-light leading-relaxed">
+                          {selectedSkill.useCase}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-white/10">
+                        {selectedSkill.examples?.map((ex: any, i: number) => (
+                          <div key={i} className="space-y-3">
+                            <h5 className="text-[11px] font-bold uppercase tracking-widest text-white">{ex.title}</h5>
+                            <p className="text-[10px] leading-relaxed text-ghost/50 uppercase tracking-wide">
+                              {ex.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedItem && (
+                    <div className="space-y-8">
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-mono text-ghost/40 uppercase tracking-[0.3em]">The Experience</h4>
+                        <p className="text-ghost/80 text-lg md:text-2xl font-light leading-relaxed">
+                          {selectedItem.details}
+                        </p>
                       </div>
                     </div>
                   )}

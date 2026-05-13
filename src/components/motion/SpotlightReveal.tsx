@@ -6,12 +6,14 @@ type SpotlightRevealProps = {
   children: React.ReactNode;
   className?: string;
   glowColor?: string;
+  onClick?: () => void;
 };
 
 export default function SpotlightReveal({
   children,
   className,
   glowColor = "rgba(59,130,246,0.18)",
+  onClick,
 }: SpotlightRevealProps) {
   const reduceMotion = useReducedMotion();
   const x = useMotionValue(50);
@@ -21,6 +23,7 @@ export default function SpotlightReveal({
   return (
     <motion.div
       className={`group relative overflow-hidden ${className ?? ""}`}
+      onClick={onClick}
       onPointerMove={(event) => {
         if (reduceMotion) {
           return;

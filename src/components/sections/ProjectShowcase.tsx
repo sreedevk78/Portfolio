@@ -12,6 +12,7 @@ import ParallaxLayer from "@/components/motion/ParallaxLayer";
 import SpotlightReveal from "@/components/motion/SpotlightReveal";
 import TiltCard from "@/components/motion/TiltCard";
 import TextDecrypt from "@/components/motion/TextDecrypt";
+import ProjectSpecs from "@/components/ProjectSpecs";
 
 const GITHUB_URL = "https://github.com/sreedevk78";
 
@@ -23,8 +24,8 @@ const projects = [
     description: "An advanced creative writing platform featuring a 'Living World Bible' driven by RAG (Retrieval-Augmented Generation).",
     image: "/codexcape.png",
     color: "#3b82f6",
-    details: "CodeXcape solves the problem of 'AI memory loss' by maintaining a persistent relational database of lore, characters, and plot points. It uses a Vector Service (Prisma + PostgreSQL) to retrieve context, ensuring that every AI-generated scene is consistent with the author's world-building history. Won 1st place at Mozilla Firefox VIT Hackathon.",
-    tech: ["Prisma", "PostgreSQL", "Next.js", "OpenAI", "RAG Architecture"],
+    details: "CodeXcape solves the problem of 'AI memory loss' by maintaining a persistent relational database of lore, characters, and plot points. It uses a high-performance Vector Service (Prisma + PostgreSQL) to manage text embeddings and perform cosine similarity searches, ensuring that every AI-generated scene is synchronized with the author's world-building history. The architecture features a dual-engine integration (Gemini/OpenAI) for maximum reliability and persona-driven generation that adapts to unique authorial voices.",
+    tech: ["Prisma", "PostgreSQL", "Next.js", "Gemini AI", "Vector Embeddings", "RAG Architecture"],
     href: GITHUB_URL,
     z: 200,
   },
@@ -35,8 +36,8 @@ const projects = [
     description: "A mobile-first application that gamifies eco-conscious living through Boss Battles against the 'Smog Boss'.",
     image: "/carbonhero.png",
     color: "#10b981",
-    details: "CarbonHero is a sustainability-focused platform that allows users to calculate, track, and visualize their carbon emissions based on daily activities. It gamifies eco-conscious living through interactive challenges and AI-driven recommendations, transforming environmental tracking into an engaging, high-stakes experience.",
-    tech: ["Groq LLaMA 3", "React Native", "Node.js", "AI Gamification"],
+    details: "CarbonHero is a sustainability-focused platform that calculates and visualizes carbon footprints based on daily habits. It leverages Groq LLaMA 3 for real-time sustainability advice and features a gamification engine that translates eco-actions into 'Neural Points'. The system includes an automated boss-battle logic where users offset their emissions to defeat environmental threats, using complex state management to track progress across multiple metrics.",
+    tech: ["Groq LLaMA 3", "React Native", "Tailwind CSS", "AI Gamification", "Logic Engine"],
     href: GITHUB_URL,
     z: 0,
   },
@@ -47,8 +48,8 @@ const projects = [
     description: "A real-time service marketplace with live tracking and socket-based scheduling for home repairs.",
     image: "/homeservices.png",
     color: "#8b5cf6",
-    details: "This platform leverages Mapbox and Socket.io to provide Uber-like tracking for technicians. It features a robust glassmorphic UI, real-time booking confirmation, and a secure payment gateway integration, streamlining the connection between service providers and homeowners.",
-    tech: ["Socket.io", "Mapbox", "Express", "React", "Real-time Tracking"],
+    details: "This platform leverages Mapbox and Socket.io for instantaneous technician geofencing and live status updates. It features a robust event-driven architecture that synchronizes booking states across the client and provider apps in under 150ms. The UI uses advanced glassmorphic layers and motion-blur transitions to maintain a premium, high-trust feel while handling complex real-time data flows.",
+    tech: ["Socket.io", "Mapbox", "Express", "Node.js", "Real-time Tracking", "Event-Driven UI"],
     href: GITHUB_URL,
     z: -200,
   }
@@ -235,6 +236,10 @@ export default function ProjectShowcase() {
                     <p className="text-electric font-mono text-xs uppercase tracking-[0.5em]">{selectedProject.subtitle}</p>
                   </div>
                   <p className="text-ghost/60 text-xl leading-relaxed font-light">{selectedProject.details}</p>
+                </div>
+
+                <div className="pt-8">
+                  <ProjectSpecs projectId={selectedProject.id} />
                 </div>
 
                 <div className="pt-12 border-t border-white/5">

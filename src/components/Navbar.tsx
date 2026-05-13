@@ -23,7 +23,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.6, duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
-      className="fixed top-0 left-0 w-full z-50 flex justify-between items-start px-5 py-5 md:px-8 md:py-8 pointer-events-none"
+      className="fixed top-0 left-0 w-full z-[150] flex justify-between items-start px-5 py-5 md:px-8 md:py-8 pointer-events-none"
     >
       <MagneticTarget strength={10} className="pointer-events-auto rounded-sm">
         <button

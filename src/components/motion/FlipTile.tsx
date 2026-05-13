@@ -30,8 +30,9 @@ export default function FlipTile({ front, back, className, ariaLabel }: FlipTile
       className={`group/scroll relative min-h-48 cursor-pointer outline-none [perspective:1000px] ${className ?? ""}`}
       whileHover={{ y: -6 }}
       whileFocus={{ y: -6 }}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
       transition={{ type: "spring", stiffness: 220, damping: 22 }}
-      onClick={() => setIsFlipped(!isFlipped)}
     >
       <div 
         className="absolute inset-0 rounded-2xl transition-transform duration-700 [transform-style:preserve-3d]"

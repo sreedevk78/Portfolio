@@ -10,7 +10,7 @@ export default function StatusBar() {
   const currentScene = scenes[activeIndex];
 
   return (
-    <div className="fixed top-0 inset-x-0 z-[60] pointer-events-none">
+    <div className="fixed top-0 inset-x-0 z-[150] pointer-events-none">
       <div className="max-w-[1800px] mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">

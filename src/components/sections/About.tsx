@@ -165,7 +165,9 @@ export default function About() {
                 <span className="w-4 h-[1px] bg-electric" /> Leadership
               </h4>
               <p className="text-ghost/50 text-xs md:text-sm leading-relaxed font-medium">
-                Organized <span className="text-white">Riviera & Thanima &apos;25</span> logistics, managing India&apos;s largest international sports and cultural festivals. Coordinated large-scale teams to ensure seamless event execution.
+                {"Organized "}
+                <span className="text-white">{"Riviera & Thanima '25"}</span>
+                {" logistics, managing India's largest international sports and cultural festivals. Coordinated large-scale teams to ensure seamless event execution."}
               </p>
             </div>
             <div className="space-y-4">
@@ -173,7 +175,9 @@ export default function About() {
                 <span className="w-4 h-[1px] bg-royal" /> Communication
               </h4>
               <p className="text-ghost/50 text-xs md:text-sm leading-relaxed font-medium">
-                Award-winning speaker at <span className="text-white">VIT Toastmasters</span>. Honed persuasive leadership and impromptu speaking, consistently winning the &apos;Audience Poll&apos; for technical and narrative delivery.
+                {"Award-winning speaker at "}
+                <span className="text-white">{"VIT Toastmasters"}</span>
+                {". Honed persuasive leadership and impromptu speaking, consistently winning the 'Audience Poll' for technical and narrative delivery."}
               </p>
             </div>
           </div>
