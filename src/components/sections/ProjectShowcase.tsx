@@ -27,7 +27,6 @@ const projects = [
     tech: ["Prisma", "PostgreSQL", "Next.js", "OpenAI", "RAG Architecture"],
     href: GITHUB_URL,
     z: 200,
-    metrics: { efficiency: "94%", latency: "120ms", vectors: "12k+" }
   },
   {
     id: 2,
@@ -36,11 +35,10 @@ const projects = [
     description: "A mobile-first application that gamifies eco-conscious living through Boss Battles against the 'Smog Boss'.",
     image: "/carbonhero.png",
     color: "#10b981",
-    details: "CarbonHero integrates with Groq (LLaMA 3) to analyze personal sustainability metrics. Users earn 'Eco-Points' by completing real-world tasks, which are then used in strategic combat encounters against personified environmental threats. It transforms tracking from a chore into a high-stakes interactive experience.",
+    details: "CarbonHero is a sustainability-focused platform that allows users to calculate, track, and visualize their carbon emissions based on daily activities. It gamifies eco-conscious living through interactive challenges and AI-driven recommendations, transforming environmental tracking into an engaging, high-stakes experience.",
     tech: ["Groq LLaMA 3", "React Native", "Node.js", "AI Gamification"],
     href: GITHUB_URL,
     z: 0,
-    metrics: { engagement: "88%", ai_accuracy: "92%", combat_loops: "15+" }
   },
   {
     id: 3,
@@ -53,7 +51,6 @@ const projects = [
     tech: ["Socket.io", "Mapbox", "Express", "React", "Real-time Tracking"],
     href: GITHUB_URL,
     z: -200,
-    metrics: { load_time: "0.8s", users: "5k+", tracking_precision: "5m" }
   }
 ];
 
@@ -101,7 +98,7 @@ export default function ProjectShowcase() {
         >
           <div className="flex items-center gap-3 text-electric font-mono text-[10px] uppercase tracking-[0.5em]">
             <span className="w-8 h-[1px] bg-electric/30" />
-            Project_Archive_Subsystem
+            Projects
           </div>
           <h2 className="text-4xl md:text-[7rem] font-black tracking-tighter uppercase leading-[0.85]">
             <KineticText text={"SELECTED\nLOGIC"} lineClassName={(index) => index === 1 ? "text-edge-outline" : ""} />
@@ -132,7 +129,7 @@ export default function ProjectShowcase() {
                   setSelectedProject(project);
                 }
               }}
-              className="group relative h-[170px] md:h-[420px] bg-white/[0.035] border border-white/10 rounded-2xl md:rounded-[2rem] overflow-hidden hover:border-electric/45 transition-all duration-500 stage-3d cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian"
+              className="group relative h-[280px] md:h-[420px] bg-white/[0.035] border border-white/10 rounded-2xl md:rounded-[2rem] overflow-hidden hover:border-electric/45 transition-all duration-500 stage-3d cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian"
               onClick={() => setSelectedProject(project)}
             >
               <TiltCard className="h-full w-full">
@@ -166,7 +163,7 @@ export default function ProjectShowcase() {
                   </div>
 
                   <div className="pt-2 md:pt-6 border-t border-white/5 flex items-center justify-between group-hover:border-electric/30 transition-colors">
-                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-ghost/65 group-hover:text-white">Initialize_Archive</span>
+                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-ghost/65 group-hover:text-white">View Project</span>
                     <ArrowRight className="w-5 h-5 text-electric group-hover:translate-x-2 transition-all" />
                   </div>
                 </div>
@@ -199,11 +196,8 @@ export default function ProjectShowcase() {
             >
               <div className="absolute top-10 left-12 z-50 flex items-center gap-6">
                 <div className="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
-                  <Cpu className="w-4 h-4 text-electric" />
-                  <span className="text-[10px] font-mono text-ghost/60 uppercase tracking-widest">Logic_ID: {selectedProject.id}</span>
+                  <span className="text-[10px] font-mono text-ghost/60 uppercase tracking-widest">Case_Study</span>
                 </div>
-                <div className="h-[1px] w-12 bg-white/10" />
-                <span className="text-[10px] font-mono text-ghost/20 uppercase tracking-[0.5em]">SYSTEM_STABLE</span>
               </div>
 
               <button
@@ -234,7 +228,7 @@ export default function ProjectShowcase() {
                 </button>
               </div>
 
-              <div className="flex-[1.2] p-16 md:p-24 overflow-y-auto custom-scrollbar space-y-16 bg-gradient-to-br from-obsidian/60 to-transparent">
+              <div className="flex-[1.2] p-16 md:p-24 overflow-y-auto custom-scrollbar space-y-16 bg-gradient-to-br from-obsidian/60 to-transparent" data-lenis-prevent="true">
                 <div className="space-y-8">
                   <div className="space-y-4">
                     <h2 className="text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none">{selectedProject.title}</h2>
@@ -243,27 +237,14 @@ export default function ProjectShowcase() {
                   <p className="text-ghost/60 text-xl leading-relaxed font-light">{selectedProject.details}</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-12 border-t border-white/5">
+                <div className="pt-12 border-t border-white/5">
                   <div className="space-y-6">
                     <h4 className="text-xs font-mono uppercase tracking-[0.4em] text-white flex items-center gap-3">
-                      <Layers className="w-4 h-4 text-electric" /> Stack_Composition
+                      <Layers className="w-4 h-4 text-electric" /> Tech Stack
                     </h4>
                     <div className="flex flex-wrap gap-3">
                       {selectedProject.tech.map((t: string) => (
                         <span key={t} className="px-4 py-2 bg-white/[0.03] border border-white/5 rounded-xl text-[10px] font-mono text-ghost/40 uppercase tracking-widest hover:border-electric/30 transition-colors">{t}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="space-y-6">
-                    <h4 className="text-xs font-mono uppercase tracking-[0.4em] text-white flex items-center gap-3">
-                      <Activity className="w-4 h-4 text-electric" /> Performance_Metrics
-                    </h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      {Object.entries(selectedProject.metrics).map(([key, val]) => (
-                        <div key={key} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl space-y-1">
-                          <span className="text-[9px] font-mono text-ghost/20 uppercase tracking-widest">{key.replace('_', ' ')}</span>
-                          <span className="text-lg font-bold text-electric block">{val as string}</span>
-                        </div>
                       ))}
                     </div>
                   </div>

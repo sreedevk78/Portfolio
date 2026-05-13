@@ -2,7 +2,8 @@
 
 import { motion, useTransform } from "framer-motion";
 import Image from "next/image";
-import { Activity } from "lucide-react";
+import { useState } from "react";
+import { Activity, X, Briefcase, GraduationCap, Award } from "lucide-react";
 import { useSpatial } from "@/components/SpatialStage";
 import { useSceneProgress } from "@/components/SceneContainer";
 import KineticText from "@/components/motion/KineticText";
@@ -15,42 +16,46 @@ const items = [
   {
     logo: "/logos/vit_vellore.png",
     title: "VIT Vellore",
-    subtitle: "B.Tech Computer Science Core",
-    description: "2024-2028 | CGPA: 8.86/10.0. Engineering high-order intelligence systems and scalable neural architectures.",
+    subtitle: "B.Tech Computer Science",
+    description: "2024-2028 | CGPA: 8.86/10.0. Engineering high-order intelligence systems and scalable architectures.",
     bgColor: "bg-white",
-    metrics: ["Core Engineering", "AI Research", "System Design"],
+    icon: GraduationCap,
+    details: "Currently pursuing a Bachelor of Technology in Computer Science. Core coursework includes Data Structures, Algorithms, Computer Architecture, and AI Fundamentals. Maintaining a high academic standing while actively participating in technical communities.",
   },
   {
     logo: "/logos/mozilla_vit.jpg",
     title: "Mozilla VIT",
-    subtitle: "1st Place | CodeXcape Hackathon",
-    description: "Architected a RAG-driven Author OS, defeating 30+ teams through innovative vector storage and lore retrieval logic.",
+    subtitle: "Winner | CodeXcape Hackathon",
+    description: "Developed a RAG-driven creative platform for authors using advanced vector storage.",
     bgColor: "bg-white",
-    metrics: ["RAG Systems", "Vector DB", "LLM Integration"],
+    icon: Award,
+    details: "Led the development of a 'Living World Bible' for writers. The system used Retrieval-Augmented Generation (RAG) to maintain story continuity across thousands of pages. Integrated vector databases for high-speed lore retrieval and context-aware AI generation.",
   },
   {
     logo: "/logos/club_fm.png",
     title: "Club FM Dubai",
     subtitle: "Kutty RJ | Radio Anchor",
-    description: "Selected for high-stakes public engagement and rapid communication at Dubai's premium radio station.",
+    description: "Selected for public engagement and live communication at a leading radio station.",
     bgColor: "bg-[#f37021]",
-    metrics: ["Public Relations", "Rapid Comms", "Live Media"],
+    icon: Briefcase,
+    details: "Served as a youth radio personality, managing live broadcasts and engaging with a diverse audience. Developed strong communication, public speaking, and rapid-response skills in a high-pressure media environment.",
   },
 ];
 
 const skills = [
-  { name: "C++", level: "95%", status: "OPTIMIZED", useCase: "Advanced algorithm optimization and core memory management for performance-critical systems." },
-  { name: "Python", level: "90%", status: "STABLE", useCase: "Building AI backend logic and automated data-processing pipelines for generative workflows." },
-  { name: "TypeScript", level: "92%", status: "SYNCHRONIZED", useCase: "Developing type-safe scalable architectures and RAG-integrated creative platforms." },
-  { name: "React", level: "94%", status: "STABLE", useCase: "Crafting high-fidelity component interfaces with complex state synchronization." },
-  { name: "Next.js", level: "96%", status: "OPTIMIZED", useCase: "Server-rendering optimization and cinematic motion orchestration." },
-  { name: "PostgreSQL", level: "85%", status: "INDEXED", useCase: "Managing relational lore databases and vector storage for AI continuity." },
-  { name: "Framer Motion", level: "98%", status: "CHOREOGRAPHED", useCase: "Engineering spatial transitions and interactive motion choreography." },
+  { name: "C++ / C", level: "Expert", status: "Advanced", useCase: "Strong foundation in low-level memory management and algorithm design. Proficient in performance-critical C++ architectures." },
+  { name: "Java", level: "Advanced", status: "Core", useCase: "Object-oriented software development and robust application architecture. Experienced in building scalable systems." },
+  { name: "Python", level: "Expert", status: "AI Focus", useCase: "Specialist in AI-assisted development and LLM integration. Expert in leveraging Python for generative workflows." },
+  { name: "Prompt Engineering", level: "Expert", status: "AI Mastery", useCase: "Advanced mastery of LLM orchestration, chain-of-thought prompting, and rapid AI-driven prototyping." },
+  { name: "TypeScript", level: "Expert", status: "Full-Stack", useCase: "Developing type-safe, complex web architectures and RAG-integrated creative platforms with Next.js." },
+  { name: "React", level: "Expert", status: "UI/UX", useCase: "Crafting high-fidelity, interactive user interfaces with sophisticated state management and motion." },
+  { name: "PostgreSQL", level: "Advanced", status: "Database", useCase: "Managing relational databases and vector storage for persistent AI world-building lore." },
 ];
 
 export default function Experience() {
   const { mouseX, mouseY } = useSpatial();
   const { progress } = useSceneProgress();
+  const [selectedSkill, setSelectedSkill] = useState<typeof skills[0] | null>(null);
 
   const rotateX = useTransform(mouseY, [-1, 1], [1.5, -1.5]);
   const rotateY = useTransform(mouseX, [-1, 1], [-1.5, 1.5]);
@@ -64,15 +69,16 @@ export default function Experience() {
         <motion.div style={{ opacity: railOpacity }} className="absolute left-[8%] top-[10%] h-[80%] w-[1px] bg-gradient-to-b from-transparent via-electric/35 to-transparent" />
         <motion.div style={{ opacity: railOpacity }} className="absolute right-[12%] top-[20%] h-48 w-48 border border-white/10 rotate-45" />
       </ParallaxLayer>
+
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 xl:gap-24 items-center stage-3d">
         <motion.div style={{ y: leftY }} className="space-y-10 relative z-10">
           <div className="space-y-5">
             <div className="flex items-center gap-3 text-electric font-mono text-[10px] uppercase tracking-[0.5em]">
               <span className="w-8 h-[1px] bg-electric/30" />
-              Intelligence_Background
+              Professional_Path
             </div>
             <h2 className="text-5xl md:text-[8rem] font-black leading-[0.85] uppercase tracking-tighter">
-              <KineticText text={"CORE\nSYSTEMS"} lineClassName={(index) => index === 1 ? "text-edge-outline" : ""} />
+              <KineticText text={"EXPERIENCE\n& CORE"} lineClassName={(index) => index === 1 ? "text-edge-outline" : ""} />
             </h2>
           </div>
 
@@ -94,11 +100,6 @@ export default function Experience() {
                     <p className="text-electric font-mono text-[10px] uppercase tracking-[0.25em]">{item.subtitle}</p>
                   </div>
                   <p className="text-ghost/65 text-xs md:text-sm leading-relaxed max-w-md font-medium uppercase tracking-wide">{item.description}</p>
-                  <div className="hidden sm:flex flex-wrap gap-2">
-                    {item.metrics.map((metric) => (
-                      <span key={metric} className="text-[8px] font-mono text-ghost/50 uppercase tracking-widest border border-white/10 px-2 py-1 rounded">{metric}</span>
-                    ))}
-                  </div>
                 </div>
               </MagneticTarget>
             ))}
@@ -107,23 +108,23 @@ export default function Experience() {
 
         <motion.div
           style={{ rotateX, rotateY, z: gridZ }}
-          className="relative stage-3d hidden lg:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
+          className="relative stage-3d grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6"
         >
           {skills.map((skill, index) => (
-            <MagneticTarget
+            <motion.div
               key={skill.name}
-              strength={10}
-              className="min-h-48"
+              initial={{ opacity: 0, z: -200 }}
+              whileInView={{ opacity: 1, z: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="h-full"
+              onClick={() => setSelectedSkill(skill)}
             >
               <FlipTile
-                ariaLabel={`${skill.name} skill details`}
-                className="min-h-48"
                 front={
-                  <motion.article
-                    initial={{ opacity: 0, y: 34, z: -120 }}
-                    animate={{ opacity: 1, y: 0, z: index % 2 === 0 ? 20 : -20 }}
-                    transition={{ delay: index * 0.055, duration: 0.7, ease: "circOut" }}
-                    className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors stage-3d"
+                  <motion.article 
+                    whileHover={{ scale: 1.02 }}
+                    className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors stage-3d cursor-pointer"
                   >
                     <SpotlightReveal className="h-full rounded-2xl">
                       <div className="h-full w-full p-5 flex flex-col overflow-hidden">
@@ -131,18 +132,21 @@ export default function Experience() {
                           <div className="w-9 h-9 rounded-xl bg-electric/10 flex items-center justify-center">
                             <Activity className="w-4 h-4 text-electric" />
                           </div>
-                          <span className="text-[11px] font-mono text-electric">{skill.level}</span>
+                          <span className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest">{skill.status}</span>
                         </div>
 
                         <h4 className="text-xl font-black uppercase tracking-tighter mb-1 shrink-0">{skill.name}</h4>
-                        <span className="text-[8px] font-mono text-ghost/45 uppercase tracking-[0.2em] shrink-0">{skill.status}</span>
+                        <span className="text-[10px] font-mono text-electric uppercase tracking-[0.1em] shrink-0">{skill.level}</span>
                         
-                        <div className="relative flex-1 mt-4 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+                        <div className="relative flex-1 mt-4 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] pointer-events-none">
                           <div className="absolute inset-x-0 top-0 animate-auto-scroll">
-                            <p className="text-[11px] text-ghost/72 font-mono leading-relaxed">
+                            <p className="text-[11px] text-ghost/60 font-mono leading-relaxed">
                               {skill.useCase}
                             </p>
                           </div>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-white/5 shrink-0">
+                           <span className="text-[9px] font-mono text-electric/60 uppercase tracking-widest">Click to Expand</span>
                         </div>
                       </div>
                     </SpotlightReveal>
@@ -151,28 +155,85 @@ export default function Experience() {
                 back={
                   <div className="h-full flex flex-col overflow-hidden rounded-2xl border border-electric/35 bg-electric/[0.07] p-5 text-left shadow-[0_0_34px_rgba(59,130,246,0.12)]">
                     <div className="mb-5 flex items-center justify-between shrink-0">
-                      <span className="text-[9px] font-mono uppercase tracking-[0.35em] text-electric">Interaction_Mode</span>
+                      <span className="text-[9px] font-mono uppercase tracking-[0.35em] text-electric">Technical_Core</span>
                       <span className="text-[11px] font-mono text-ghost/70">{skill.level}</span>
                     </div>
                     <h4 className="text-2xl font-black uppercase tracking-tighter text-white shrink-0">{skill.name}</h4>
                     
-                    <div className="relative flex-1 mt-4 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
-                      <div className="absolute inset-x-0 top-0 animate-auto-scroll">
-                        <p className="text-[11px] font-mono leading-relaxed text-ghost/70">
-                          Hover, focus, and scroll states are tuned for transform-only motion while preserving readable technical context.
-                        </p>
-                      </div>
+                    <div className="mt-4 flex-1 overflow-hidden">
+                      <p className="text-[11px] font-mono leading-relaxed text-ghost/70">
+                        {skill.useCase}
+                      </p>
                     </div>
                     
                     <div className="mt-5 h-[1px] w-full shrink-0 bg-gradient-to-r from-electric/60 to-transparent" />
-                    <span className="mt-4 block text-[9px] font-mono uppercase tracking-[0.3em] text-ghost/45 shrink-0">{skill.status}</span>
+                    <span className="mt-4 block text-[9px] font-mono uppercase tracking-[0.3em] text-ghost/45 shrink-0">Click to expand details</span>
                   </div>
                 }
               />
-            </MagneticTarget>
+            </motion.div>
           ))}
         </motion.div>
       </div>
+
+      {/* Expanded View Modal */}
+      {selectedSkill && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedSkill(null)}
+            className="absolute inset-0 bg-obsidian/90 backdrop-blur-xl"
+          />
+          <motion.div
+            layoutId={`skill-${selectedSkill.name}`}
+            className="relative w-full max-w-2xl bg-onyx border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+            data-lenis-prevent="true"
+          >
+            <div className="p-8 md:p-12 space-y-8">
+              <div className="flex justify-between items-start">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-electric/10 flex items-center justify-center">
+                      <Activity className="w-6 h-6 text-electric" />
+                    </div>
+                    <span className="text-sm font-mono text-electric uppercase tracking-widest">{selectedSkill.level}</span>
+                  </div>
+                  <h3 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">{selectedSkill.name}</h3>
+                </div>
+                <button
+                  onClick={() => setSelectedSkill(null)}
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <h4 className="text-xs font-mono text-ghost/40 uppercase tracking-[0.3em]">Technical Application</h4>
+                  <p className="text-ghost/80 text-lg md:text-xl font-light leading-relaxed">
+                    {selectedSkill.useCase}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+                  <div className="space-y-2">
+                    <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Status</span>
+                    <span className="block text-sm font-bold uppercase text-electric">{selectedSkill.status}</span>
+                  </div>
+                  <div className="space-y-2">
+                    <span className="block text-[10px] font-mono text-ghost/30 uppercase tracking-widest">Focus</span>
+                    <span className="block text-sm font-bold uppercase text-white">Full-Stack Development</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }
+

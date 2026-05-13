@@ -38,6 +38,20 @@ export default function SpatialStage({ children }: { children: React.ReactNode }
   const cameraPanY = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [0, -34, 24, -18, 0]);
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+    
+    if (isMobile) {
+      // Slow auto-pan for mobile to keep the stage alive without a mouse
+      const pan = () => {
+        const time = Date.now() / 3000;
+        mouseX.set(Math.sin(time) * 0.4);
+        mouseY.set(Math.cos(time * 0.7) * 0.4);
+        requestAnimationFrame(pan);
+      };
+      const rafId = requestAnimationFrame(pan);
+      return () => cancelAnimationFrame(rafId);
+    }
+
     const handleMouseMove = (event: MouseEvent) => {
       const x = (event.clientX / window.innerWidth - 0.5) * 2;
       const y = (event.clientY / window.innerHeight - 0.5) * 2;
@@ -60,7 +74,7 @@ export default function SpatialStage({ children }: { children: React.ReactNode }
     <SpatialContext.Provider value={{ mouseX: springX, mouseY: springY, scrollProgress: scrollYProgress, cameraZ }}>
       <main
         className="fixed inset-0 w-full h-screen overflow-hidden bg-[#050505] cinematic-grain pointer-events-none"
-        style={{ perspective: "1200px" }}
+        style={{ perspective: "clamp(800px, 120vw, 1400px)" }}
       >
         <motion.div
           style={{ transformStyle: "preserve-3d" }}

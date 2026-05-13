@@ -140,49 +140,53 @@ export default function About() {
                 <KineticText text="THE ARCHITECT" />
               </h2>
             </VelocitySkew>
-            <div className="grid grid-cols-3 gap-3 lg:hidden">
+            <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar lg:hidden -mx-6 px-6" data-lenis-prevent="true">
               {profilePhotos.map((photo, index) => (
                 <button
                   key={photo.src}
                   type="button"
                   onClick={() => setActivePhoto(index)}
                   aria-label={`Open ${photo.label}`}
-                  className="relative h-24 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+                  className="relative flex-shrink-0 w-[70vw] aspect-[3/4] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] group"
                 >
                   <Image
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    sizes="33vw"
-                    className="object-cover"
+                    sizes="70vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     style={{ objectPosition: photo.objectPosition }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80" />
+                  <div className="absolute bottom-6 left-6 text-left">
+                    <span className="block text-[8px] font-mono text-electric uppercase tracking-[0.2em] mb-1">Identity_0{index + 1}</span>
+                    <span className="block text-lg font-black uppercase tracking-tighter text-white">{photo.label}</span>
+                  </div>
                 </button>
               ))}
             </div>
             <p className="text-ghost/60 text-base md:text-2xl font-light leading-relaxed">
-              I don&apos;t just build applications; I engineer <span className="text-white font-medium">immersive digital narratives</span>. My focus lies at the intersection of <span className="text-electric font-bold">Generative AI</span> and <span className="text-royal font-bold">Spatial Interaction</span>.
+              I am a <span className="text-white font-medium">Computer Science student at VIT Vellore</span> dedicated to engineering <span className="text-electric font-bold">AI-Native Systems</span> and <span className="text-royal font-bold">Spatial Interactions</span>. With a background in full-stack development and a proven track record in high-stakes hackathons, I bridge the gap between technical architecture and cinematic user experience.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 border-t border-white/10 pt-8 md:pt-12">
-            <MagneticTarget strength={10} className="space-y-4 cursor-crosshair">
+            <div className="space-y-4">
               <h4 className="text-electric font-mono text-xs uppercase tracking-widest flex items-center gap-2">
-                <span className="w-4 h-[1px] bg-electric" /> <TextDecrypt text="Philosophy" />
+                <span className="w-4 h-[1px] bg-electric" /> Leadership
               </h4>
               <p className="text-ghost/50 text-xs md:text-sm leading-relaxed font-medium">
-                Code is the new cinematography. Every interaction should feel like a choreographed scene, and every AI response should have the weight of a well-researched archive.
+                Organized <span className="text-white">Riviera & Thanima &apos;25</span> logistics, managing India&apos;s largest international sports and cultural festivals. Coordinated large-scale teams to ensure seamless event execution.
               </p>
-            </MagneticTarget>
-            <MagneticTarget strength={10} className="space-y-4 cursor-crosshair">
+            </div>
+            <div className="space-y-4">
               <h4 className="text-royal font-mono text-xs uppercase tracking-widest flex items-center gap-2">
-                <span className="w-4 h-[1px] bg-royal" /> <TextDecrypt text="Objective" />
+                <span className="w-4 h-[1px] bg-royal" /> Communication
               </h4>
               <p className="text-ghost/50 text-xs md:text-sm leading-relaxed font-medium">
-                Transforming the static web into a premium, interactive product experience that feels physically responsive to the human touch.
+                Award-winning speaker at <span className="text-white">VIT Toastmasters</span>. Honed persuasive leadership and impromptu speaking, consistently winning the &apos;Audience Poll&apos; for technical and narrative delivery.
               </p>
-            </MagneticTarget>
+            </div>
           </div>
         </motion.div>
       </div>

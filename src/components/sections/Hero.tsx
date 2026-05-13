@@ -55,11 +55,11 @@ export default function Hero() {
             className="flex items-center justify-center gap-4 text-electric font-mono text-[10px] tracking-[0.8em] uppercase"
           >
             <span className="w-12 h-[1px] bg-electric/30" />
-            Neural_Interface_v4.0
+            Computer Science @ VIT Vellore
             <span className="w-12 h-[1px] bg-electric/30" />
           </motion.div>
           
-          <h1 className="text-[4.6rem] sm:text-8xl md:text-[14rem] font-black leading-[0.85] tracking-tighter uppercase text-sharp-glow">
+          <h1 className="text-[12vw] sm:text-8xl md:text-[14rem] font-black leading-[0.85] tracking-tighter uppercase text-sharp-glow">
             <VelocitySkew>
               <KineticText text={"SREEDEV\nKRISHNA"} lineClassName={(index) => index === 1 ? "text-edge-outline" : ""} />
             </VelocitySkew>
@@ -72,8 +72,8 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 1 }}
           className="text-ghost/40 text-xl md:text-2xl font-light tracking-widest uppercase max-w-4xl mx-auto leading-relaxed"
         >
-          <TextDecrypt text="Architecting the Future of" /> <br />
-          <span className="text-white font-medium"><TextDecrypt text="AI-Native Systems & Cinematic Interaction" /></span>
+          <TextDecrypt text="Engineering the Future of" /> <br />
+          <span className="text-white font-medium"><TextDecrypt text="AI-Native Systems & Fullstack Architecture" /></span>
         </motion.p>
 
         <motion.div
@@ -90,7 +90,7 @@ export default function Hero() {
             >
               <div className="absolute -inset-4 bg-electric/15 opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
               <div className="relative inline-flex items-center gap-8 px-12 py-6 bg-white/[0.04] border border-white/10 rounded-full group-hover:border-electric/50 transition-all duration-500 cursor-pointer overflow-hidden">
-                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.28em] sm:tracking-[0.4em] text-ghost/60 group-hover:text-white">Initialize_Spatial_Path</span>
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.28em] sm:tracking-[0.4em] text-ghost/60 group-hover:text-white">Explore Portfolio</span>
                 <motion.div 
                   animate={{ x: [-20, 20], opacity: [0, 1, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
