@@ -44,8 +44,8 @@ export default function About() {
   const copyY = useTransform(progress, [0, 0.45, 1], [0, 0, 0]); // Stabilize text
   
   return (
-    <section className="relative w-full min-h-screen lg:h-screen flex flex-col items-center justify-center py-24 md:py-32 px-6 md:px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
+    <section className="relative w-full min-h-screen lg:h-screen flex flex-col items-center justify-center py-12 md:py-32 px-6 md:px-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-32 items-center">
         <motion.div 
           style={{ rotateX: galleryRotateX, rotateY: galleryRotateY }}
           className="relative h-[500px] md:h-[600px] hidden lg:flex items-center justify-center stage-3d"

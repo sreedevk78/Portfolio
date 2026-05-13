@@ -82,7 +82,8 @@ export default function NeuralNetwork() {
 
     const initParticles = () => {
       particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      const isMobileCanvas = canvas.width < 768;
+      const particleCount = Math.floor((canvas.width * canvas.height) / (isMobileCanvas ? 25000 : 15000));
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -99,7 +100,8 @@ export default function NeuralNetwork() {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 120 && distance > 1e-6) {
+          const connectDist = canvas.width < 768 ? 80 : 120;
+          if (distance < connectDist && distance > 1e-6) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - distance/800})`;
             ctx.lineWidth = 0.5;

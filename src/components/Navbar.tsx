@@ -79,7 +79,7 @@ export default function Navbar() {
             <motion.div
               initial={{ opacity: 0, y: -12, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="absolute right-0 mt-4 w-56 border border-white/10 bg-obsidian/95 shadow-2xl shadow-black/40 p-2"
+              className="absolute right-0 mt-4 w-56 border border-white/10 bg-obsidian/95 backdrop-blur-xl shadow-2xl shadow-black/40 p-2 rounded-2xl"
             >
               {scenes.map((item) => {
                 const isActive = activeSection === item.index;

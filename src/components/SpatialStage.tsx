@@ -3,6 +3,7 @@
 import { motion, MotionValue, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { createContext, useContext, useEffect } from "react";
 import { SCENE_DEPTH, sceneCount } from "@/lib/scenes";
+import useIsMobile from "@/lib/useIsMobile";
 
 type SpatialContextValue = {
   mouseX: MotionValue<number>;
@@ -29,6 +30,7 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
   const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll();
 
@@ -73,18 +75,18 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
     <SpatialContext.Provider value={{ mouseX: springX, mouseY: springY, scrollProgress: scrollYProgress, cameraZ }}>
       <main
         className="fixed inset-0 w-full h-screen overflow-hidden bg-[#050505] cinematic-grain pointer-events-none"
-        style={{ perspective: "clamp(800px, 120vw, 1400px)" }}
+        style={{ perspective: isMobile ? "none" : "clamp(800px, 120vw, 1400px)" }}
       >
         <motion.div
-          style={{ transformStyle: "preserve-3d" }}
+          style={{ transformStyle: isMobile ? "flat" : "preserve-3d" }}
           className="absolute inset-0 pointer-events-none"
         >
           <motion.div
             style={{
-              rotateX: reduceMotion ? 0 : unifiedRotateX,
-              rotateY: reduceMotion ? 0 : mouseRotateY,
-              z: cameraZ,
-              transformStyle: "preserve-3d",
+              rotateX: (reduceMotion || isMobile) ? 0 : unifiedRotateX,
+              rotateY: (reduceMotion || isMobile) ? 0 : mouseRotateY,
+              z: isMobile ? 0 : cameraZ,
+              transformStyle: isMobile ? "flat" : "preserve-3d",
             }}
             className="w-full h-full relative"
           >

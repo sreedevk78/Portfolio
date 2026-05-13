@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import { motion, type MotionValue, useTransform } from "framer-motion";
 import { useSpatial } from "@/components/SpatialStage";
 import { getSceneById, getSceneIndexFromProgress, getSceneProgress, SCENE_DEPTH, sceneCount, type SceneId } from "@/lib/scenes";
+import useIsMobile from "@/lib/useIsMobile";
 
 type SceneContextValue = {
   sceneId: SceneId;
@@ -26,7 +27,8 @@ export function useSceneProgress() {
 export default function SceneContainer({ children, sceneId }: { children: React.ReactNode; sceneId: SceneId }) {
   const { scrollProgress, cameraZ } = useSpatial();
   const scene = getSceneById(sceneId);
-  const z = -scene.index * SCENE_DEPTH;
+  const isMobile = useIsMobile();
+  const z = isMobile ? 0 : -scene.index * SCENE_DEPTH;
   const center = getSceneProgress(scene.index);
   const segment = sceneCount > 1 ? 1 / (sceneCount - 1) : 1;
   const localProgress = useTransform(
@@ -34,9 +36,9 @@ export default function SceneContainer({ children, sceneId }: { children: React.
     [Math.max(0, center - segment), center, Math.min(1, center + segment)],
     [0, 0.5, 1]
   );
-  const distance = useTransform(cameraZ, (val) => Math.abs(val + z));
+  const distance = useTransform(cameraZ, (val) => isMobile ? Math.abs(scene.index * SCENE_DEPTH - val) : Math.abs(val + z));
 
-  const opacity = useTransform(distance, [0, 300, 560, 760], [1, 0.96, 0.08, 0]);
+  const opacity = useTransform(distance, isMobile ? [0, 400, 700, 900] : [0, 300, 560, 760], [1, 0.96, 0.08, 0]);
   const scale = useTransform(distance, [0, 760, 1200], [1, 0.97, 0.9]);
   const sceneContrast = useTransform(distance, [0, 720], [0, 0.4]);
   const transitionGlow = useTransform(distance, [0, 240, 520, 760], [0.1, 0.16, 0.04, 0]);
@@ -57,9 +59,9 @@ export default function SceneContainer({ children, sceneId }: { children: React.
         height: "100%",
         z: z,
         opacity,
-        scale,
+        scale: isMobile ? 1 : scale,
         pointerEvents,
-        transformStyle: "preserve-3d"
+        transformStyle: isMobile ? "flat" : "preserve-3d"
       }}
       className="flex items-center justify-center"
     >
@@ -74,8 +76,8 @@ export default function SceneContainer({ children, sceneId }: { children: React.
       <div className="timeline-glow absolute inset-x-[12%] top-1/2 h-[1px] -translate-y-1/2 bg-gradient-to-r from-transparent via-electric/60 to-transparent opacity-0 pointer-events-none z-10" />
       
       <motion.div 
-        className="w-full h-full relative z-20 stage-3d"
-        style={{ transformStyle: "preserve-3d" }}
+        className="w-full h-full relative z-20"
+        style={{ transformStyle: isMobile ? "flat" : "preserve-3d" }}
       >
         {children}
       </motion.div>

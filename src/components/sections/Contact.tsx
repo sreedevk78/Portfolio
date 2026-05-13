@@ -144,12 +144,12 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-12 left-12 flex flex-col gap-2 opacity-10 font-mono text-[8px] uppercase tracking-[0.4em] pointer-events-none">
+      <div className="absolute bottom-12 left-12 hidden md:flex flex-col gap-2 opacity-10 font-mono text-[8px] uppercase tracking-[0.4em] pointer-events-none">
          <span>Lat: 10.8505 | Long: 76.2711</span>
          <span>Environment: v4.0.2_Live</span>
       </div>
       
-      <div className="absolute bottom-12 right-12 opacity-10 font-mono text-[8px] uppercase tracking-[0.6em] pointer-events-none">
+      <div className="absolute bottom-12 right-12 hidden md:block opacity-10 font-mono text-[8px] uppercase tracking-[0.6em] pointer-events-none">
         [SREEDEV_KRISHNA_(c)_2026]
       </div>
     </section>

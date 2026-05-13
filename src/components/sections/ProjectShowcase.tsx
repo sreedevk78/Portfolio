@@ -193,9 +193,9 @@ export default function ProjectShowcase() {
               animate={{ opacity: 1, scale: 1, z: 0, rotateX: 0 }}
               exit={{ opacity: 0, scale: 0.8, z: -1000, rotateX: 20 }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="relative w-full max-w-7xl h-full max-h-[850px] bg-[#080808] border border-white/10 rounded-[2rem] overflow-hidden flex flex-col md:flex-row stage-3d"
+              className="relative w-full max-w-7xl h-full max-h-[850px] bg-[#080808] border border-white/10 rounded-2xl md:rounded-[2rem] overflow-hidden flex flex-col md:flex-row stage-3d"
             >
-              <div className="absolute top-10 left-12 z-50 flex items-center gap-6">
+              <div className="absolute top-4 left-4 sm:top-10 sm:left-12 z-50 flex items-center gap-6">
                 <div className="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
                   <span className="text-[10px] font-mono text-ghost/60 uppercase tracking-widest">Case_Study</span>
                 </div>
@@ -205,12 +205,12 @@ export default function ProjectShowcase() {
                 type="button"
                 aria-label="Close project details"
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-10 right-12 z-50 w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-electric hover:border-electric transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian"
+                className="absolute top-4 right-4 sm:top-10 sm:right-12 z-50 w-10 h-10 sm:w-14 sm:h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-electric hover:border-electric transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian"
               >
                 <X className="w-6 h-6 text-ghost/60 group-hover:text-white" />
               </button>
 
-              <div className="absolute bottom-10 right-12 z-50 flex items-center gap-4">
+              <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-12 z-50 flex items-center gap-4">
                 <button
                   type="button"
                   aria-label="Previous project"
@@ -229,10 +229,10 @@ export default function ProjectShowcase() {
                 </button>
               </div>
 
-              <div className="flex-[1.2] p-16 md:p-24 overflow-y-auto custom-scrollbar space-y-16 bg-gradient-to-br from-obsidian/60 to-transparent" data-lenis-prevent="true">
+              <div className="flex-[1.2] p-6 pt-16 sm:p-10 sm:pt-20 md:p-24 overflow-y-auto custom-scrollbar space-y-10 sm:space-y-16 bg-gradient-to-br from-obsidian/60 to-transparent" data-lenis-prevent="true">
                 <div className="space-y-8">
                   <div className="space-y-4">
-                    <h2 className="text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none">{selectedProject.title}</h2>
+                    <h2 className="text-4xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none">{selectedProject.title}</h2>
                     <p className="text-electric font-mono text-xs uppercase tracking-[0.5em]">{selectedProject.subtitle}</p>
                   </div>
                   <p className="text-ghost/60 text-xl leading-relaxed font-light">{selectedProject.details}</p>

@@ -204,7 +204,7 @@ export default function Experience() {
         <div className="absolute right-[12%] top-[20%] h-48 w-48 border border-white/10 rotate-45" />
       </ParallaxLayer>
 
-      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-16 lg:gap-32">
+      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-8 lg:gap-32">
         {/* Left Side: Experience List */}
         <div className="w-full lg:w-[42%] space-y-10 relative z-10">
           <div className="space-y-4">
@@ -217,7 +217,7 @@ export default function Experience() {
             </h2>
           </div>
 
-          <div className="space-y-8 max-h-[60vh] overflow-y-auto custom-scrollbar pr-4">
+          <div className="space-y-8 lg:max-h-[60vh] lg:overflow-y-auto custom-scrollbar pr-4">
             {items.map((item) => (
               <button
                 key={item.title}
@@ -251,7 +251,7 @@ export default function Experience() {
           </div>
           
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 max-h-[75vh] overflow-y-auto custom-scrollbar pr-4 relative z-20"
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:max-h-[75vh] lg:overflow-y-auto custom-scrollbar pr-4 relative z-20"
           >
             {skills.map((skill) => (
               <div
@@ -354,7 +354,7 @@ export default function Experience() {
                         {selectedSkill ? selectedSkill.level : selectedItem?.subtitle}
                       </span>
                     </div>
-                    <h3 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">
+                    <h3 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter">
                       {selectedSkill ? selectedSkill.name : selectedItem?.title}
                     </h3>
                   </div>

@@ -4,7 +4,7 @@ import { Download, Wifi, Battery } from "lucide-react";
 
 export default function StatusBar() {
   return (
-    <div className="fixed top-20 left-0 right-0 z-[150] pointer-events-none md:top-24">
+    <div className="fixed top-20 left-0 right-0 z-[150] pointer-events-none md:top-24 hidden md:block">
       <div className="max-w-[1800px] mx-auto px-6 py-2 md:px-8 md:py-2.5 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
