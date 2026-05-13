@@ -49,7 +49,6 @@ export default function Contact() {
   const ambientOpacity = useTransform(progress, [0, 0.42, 0.9, 1], [0.08, 0.3, 0.2, 0.08]);
 
   return (
-  return (
     <section className="relative w-full min-h-screen lg:h-screen flex flex-col items-center justify-center py-20 px-6 md:px-8 overflow-hidden stage-3d">
       <ParallaxLayer depth={0.9} progress={progress} yRange={[20, -20]} zRange={[-150, -40]} className="absolute inset-0 pointer-events-none">
         <motion.div style={{ opacity: ambientOpacity }} className="absolute left-1/2 top-1/2 h-[64vmin] w-[64vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-electric/10" />
@@ -108,7 +107,7 @@ export default function Contact() {
             ))}
           </div>
 
-          <div className="relative group stage-3d hidden md:block">
+          <div className="relative group stage-3d">
             <div className="relative p-8 md:p-10 bg-white/[0.025] border border-white/10 rounded-3xl space-y-6 h-full flex flex-col">
               <div className="flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-3">
