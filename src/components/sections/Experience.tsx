@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { Activity, X, Briefcase, GraduationCap, Award } from "lucide-react";

@@ -77,6 +77,26 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 1 }}
+          className="flex items-center justify-center gap-12 md:gap-24 pt-4"
+        >
+          <div className="text-center">
+            <span className="block text-2xl md:text-4xl font-black text-white">2+</span>
+            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Years_Dev</span>
+          </div>
+          <div className="text-center">
+            <span className="block text-2xl md:text-4xl font-black text-electric">10+</span>
+            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Logic_Nodes</span>
+          </div>
+          <div className="text-center">
+            <span className="block text-2xl md:text-4xl font-black text-royal">1st</span>
+            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Mozilla_VIT</span>
+          </div>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1 }}

@@ -44,7 +44,7 @@ export default function About() {
   const copyY = useTransform(progress, [0, 0.45, 1], [0, 0, 0]); // Stabilize text
   
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-24 md:py-48 px-6 md:px-8 overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 md:py-32 px-6 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
         <motion.div 
           style={{ rotateX: galleryRotateX, rotateY: galleryRotateY }}
@@ -97,6 +97,8 @@ export default function About() {
                 </div>
               </SpotlightReveal>
             </motion.button>
+          </ParallaxLayer>
+
           <ParallaxLayer depth={0.55} progress={progress} yRange={[10, -20]} className="absolute left-20 bottom-0 z-10">
             <motion.button
               type="button"
@@ -175,7 +177,7 @@ export default function About() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute -z-10 top-1/2 right-0 -translate-y-1/2 w-[520px] h-[520px] bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_64%)] stage-3d" />

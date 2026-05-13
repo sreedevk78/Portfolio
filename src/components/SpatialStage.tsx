@@ -34,8 +34,7 @@ export default function SpatialStage({ children }: { children: React.ReactNode }
 
   const cameraZRaw = useTransform(scrollYProgress, [0, 1], [0, SCENE_DEPTH * (sceneCount - 1)]);
   const cameraZ = useSpring(cameraZRaw, { stiffness: 74, damping: 28, mass: 0.9 });
-  const cameraRotateX = useTransform(scrollYProgress, [0, 1], [0, 2.4]);
-  const cameraPanY = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [0, -34, 24, -18, 0]);
+  const cameraRotateX = useTransform(scrollYProgress, [0, 1], [0, 1.2]);
 
   useEffect(() => {
     const isMobile = window.matchMedia("(pointer: coarse)").matches;
@@ -85,7 +84,6 @@ export default function SpatialStage({ children }: { children: React.ReactNode }
               rotateX: reduceMotion ? 0 : unifiedRotateX,
               rotateY: reduceMotion ? 0 : mouseRotateY,
               z: cameraZ,
-              y: reduceMotion ? 0 : cameraPanY,
               transformStyle: "preserve-3d",
             }}
             className="w-full h-full relative"

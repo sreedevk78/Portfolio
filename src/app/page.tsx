@@ -12,6 +12,7 @@ import CinematicCursor from "@/components/motion/CinematicCursor";
 import CinematicTimeline from "@/components/motion/CinematicTimeline";
 import SceneMiniMap from "@/components/motion/SceneMiniMap";
 import SocialDock from "@/components/motion/SocialDock";
+import StatusBar from "@/components/StatusBar";
 import { scrollHeightClass } from "@/lib/scenes";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
       <CinematicTimeline />
       <SocialDock />
       <SceneMiniMap />
+      <StatusBar />
 
       <SpatialStage>
         <SceneContainer sceneId="hero">
