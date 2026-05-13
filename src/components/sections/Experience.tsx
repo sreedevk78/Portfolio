@@ -63,7 +63,7 @@ export default function Experience() {
   const railOpacity = useTransform(progress, [0, 0.35, 0.9, 1], [0.05, 0.3, 0.15, 0.05]);
 
   return (
-    <section className="relative w-full min-h-screen py-24 md:py-48 px-6 md:px-8 bg-obsidian/20 overflow-hidden">
+    <section className="relative w-full min-h-screen lg:h-screen py-24 md:py-32 px-6 md:px-8 bg-obsidian/20 overflow-hidden">
       <ParallaxLayer depth={0.4} progress={progress} yRange={[20, -20]} className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute left-[10%] top-0 h-full w-[1px] bg-white/10" />
         <div className="absolute right-[15%] top-[30%] h-64 w-64 border border-white/5 rounded-full" />

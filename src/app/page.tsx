@@ -11,6 +11,7 @@ import SpatialStage from "@/components/SpatialStage";
 import CinematicCursor from "@/components/motion/CinematicCursor";
 import CinematicTimeline from "@/components/motion/CinematicTimeline";
 import SceneMiniMap from "@/components/motion/SceneMiniMap";
+import FloatingTerminal from "@/components/motion/FloatingTerminal";
 import SocialDock from "@/components/motion/SocialDock";
 import StatusBar from "@/components/StatusBar";
 import { scrollHeightClass } from "@/lib/scenes";
@@ -25,6 +26,7 @@ export default function Home() {
       <CinematicTimeline />
       <SocialDock />
       <SceneMiniMap />
+      <FloatingTerminal />
       <StatusBar />
 
       <SpatialStage>

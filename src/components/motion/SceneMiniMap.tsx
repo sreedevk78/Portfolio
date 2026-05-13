@@ -9,7 +9,7 @@ export default function SceneMiniMap() {
   const { scrollToScene } = useSmoothScroll();
 
   return (
-    <div className="fixed bottom-6 right-6 z-[70] hidden flex-col gap-2 md:flex">
+    <div className="fixed bottom-12 right-6 z-[70] hidden flex-col gap-4 md:flex">
       {scenes.map((scene) => {
         const isActive = activeScene === scene.index;
 
@@ -20,14 +20,30 @@ export default function SceneMiniMap() {
             onClick={() => scrollToScene(scene.index)}
             aria-label={`Go to ${scene.name}`}
             aria-current={isActive ? "step" : undefined}
-            className={`group flex items-center justify-end gap-3 rounded-full px-2 py-1 text-[9px] font-bold uppercase tracking-[0.25em] transition-colors ${
-              isActive ? "text-ghost" : "text-ghost/35 hover:text-ghost/75"
-            }`}
+            className="group relative flex items-center justify-end"
           >
-            <span className={`max-w-0 overflow-hidden transition-all group-hover:max-w-24 ${isActive ? "max-w-24" : ""}`}>
-              {scene.name}
-            </span>
-            <span className={`h-2 w-2 rounded-full border transition-all ${isActive ? "scale-125 border-electric bg-electric shadow-[0_0_20px_rgba(59,130,246,0.65)]" : "border-white/20 bg-white/5"}`} />
+            <div className={`mr-4 px-3 py-1 rounded-sm border border-white/10 bg-obsidian/80 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 border-electric/30" : ""}`}>
+              <span className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-white whitespace-nowrap">
+                {scene.name}
+              </span>
+            </div>
+            
+            <div className="relative flex items-center justify-center">
+              {isActive && (
+                <motion.div
+                  layoutId="minimap-ring"
+                  className="absolute inset-0 -m-1.5 border border-electric/40 rounded-full"
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                />
+              )}
+              <span className={`h-2.5 w-2.5 rounded-full border-2 transition-all duration-500 ${
+                isActive 
+                  ? "border-electric bg-electric shadow-[0_0_15px_rgba(59,130,246,0.8)] scale-110" 
+                  : "border-white/10 bg-white/5 group-hover:border-white/30"
+              }`} />
+            </div>
           </button>
         );
       })}
