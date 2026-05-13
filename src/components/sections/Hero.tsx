@@ -84,15 +84,15 @@ export default function Hero() {
         >
           <div className="text-center">
             <span className="block text-2xl md:text-4xl font-black text-white">2+</span>
-            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Years_Dev</span>
+            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Years Experience</span>
           </div>
           <div className="text-center">
             <span className="block text-2xl md:text-4xl font-black text-electric">10+</span>
-            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Logic_Nodes</span>
+            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Logic Nodes</span>
           </div>
           <div className="text-center">
             <span className="block text-2xl md:text-4xl font-black text-royal">1st</span>
-            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Mozilla_VIT</span>
+            <span className="text-[9px] font-mono text-ghost/30 uppercase tracking-widest">Mozilla VIT</span>
           </div>
         </motion.div>
 
@@ -119,7 +119,7 @@ export default function Hero() {
               </div>
             </button>
           </MagneticTarget>
-          <span className="text-[9px] font-mono text-ghost/20 uppercase tracking-widest animate-pulse">Scroll to navigate Z-Space</span>
+          <span className="text-[9px] font-mono text-ghost/20 uppercase tracking-widest animate-pulse">Scroll to navigate the depth</span>
         </motion.div>
       </motion.div>
 

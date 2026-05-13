@@ -25,7 +25,7 @@
   }
   
   html, body {
-    @apply bg-obsidian text-ghost antialiased selection:bg-electric/30 overflow-x-hidden;
+    @apply bg-obsidian text-ghost antialiased selection:bg-electric/30 overflow-x-hidden text-[14px] md:text-[16px];
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 
@@ -35,8 +35,20 @@
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian;
   }
 
-  h1, h2, h3, h4 {
-    @apply tracking-tighter font-bold uppercase;
+  h1 {
+    @apply text-[clamp(2.5rem,14vw,12rem)] font-black leading-[0.85] tracking-tighter uppercase;
+  }
+  
+  h2 {
+    @apply text-[clamp(2rem,10vw,8rem)] font-black leading-[0.9] tracking-tighter uppercase;
+  }
+
+  h3 {
+    @apply text-[clamp(1.5rem,6vw,4rem)] font-black leading-tight tracking-tighter uppercase;
+  }
+
+  h4 {
+    @apply text-[clamp(0.85rem,3vw,1.25rem)] font-bold tracking-widest uppercase;
   }
 }
 
@@ -145,6 +157,22 @@
 @keyframes neural-rain {
   from { transform: translate3d(0, -120%, 0); }
   to { transform: translate3d(0, 220%, 0); }
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-hud-pulse {
+  animation: hud-pulse 3s ease-in-out infinite;
+}
+
+/* Cinematic Post-Processing refinement for high-DPI mobile */
+@media (max-width: 768px) {
+  .cinematic-grain::after {
+    opacity: 0.015;
+  }
 }
 
 /* Lenis CSS */

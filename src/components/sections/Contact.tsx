@@ -135,7 +135,7 @@ export default function Contact() {
                   }}
                   className="w-full py-6 bg-ghost text-obsidian font-black uppercase tracking-[0.45em] rounded-2xl hover:bg-electric hover:text-white transition-all duration-500 flex items-center justify-center gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian relative z-50 pointer-events-auto"
                 >
-                  <span className="text-xs">Transmit Payload</span>
+                  <span className="text-xs">Send Mail</span>
                   <SendIcon className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
                 </button>
               </div>

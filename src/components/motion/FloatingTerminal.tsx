@@ -32,7 +32,7 @@ export default function FloatingTerminal() {
   }, []);
 
   return (
-    <div className="fixed bottom-12 left-12 z-[60] hidden xl:flex flex-col gap-4 pointer-events-none">
+    <div className="fixed bottom-12 left-4 md:left-12 z-[60] flex flex-col gap-4 pointer-events-none scale-[0.7] md:scale-100 origin-bottom-left">
       <div className="space-y-1">
         {logs.map((log, i) => (
           <motion.div

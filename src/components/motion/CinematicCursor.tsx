@@ -31,7 +31,7 @@ export default function CinematicCursor() {
   return (
     <motion.div
       aria-hidden="true"
-      className="fixed left-0 top-0 z-[9999] pointer-events-none mix-blend-difference hidden md:block"
+      className="fixed left-0 top-0 z-[9999] pointer-events-none mix-blend-difference hidden lg:block"
       style={{ x, y }}
     >
       <motion.div

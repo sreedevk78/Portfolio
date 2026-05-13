@@ -129,14 +129,14 @@ export default function About() {
             <h2 className="text-5xl md:text-8xl font-black leading-none tracking-tighter uppercase">
               <KineticText text="THE ARCHITECT" />
             </h2>
-            <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar lg:hidden -mx-6 px-6" data-lenis-prevent="true">
+            <div className="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory lg:hidden -mx-6 px-6 custom-scrollbar" data-lenis-prevent="true">
               {profilePhotos.map((photo, index) => (
                 <button
                   key={photo.src}
                   type="button"
                   onClick={() => setActivePhoto(index)}
                   aria-label={`Open ${photo.label}`}
-                  className="relative flex-shrink-0 w-[70vw] aspect-[3/4] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] group"
+                  className="relative flex-shrink-0 w-[80vw] aspect-[3/4] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] group snap-center"
                 >
                   <Image
                     src={photo.src}

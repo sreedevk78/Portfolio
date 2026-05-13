@@ -79,27 +79,48 @@ export default function Navbar() {
             <motion.div
               initial={{ opacity: 0, y: -12, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="absolute right-0 mt-4 w-56 border border-white/10 bg-obsidian/95 backdrop-blur-xl shadow-2xl shadow-black/40 p-2 rounded-2xl"
+              className="absolute right-0 mt-4 w-[85vw] max-w-sm border border-white/10 bg-obsidian/95 backdrop-blur-2xl shadow-2xl shadow-black/60 p-4 rounded-3xl"
             >
-              {scenes.map((item) => {
-                const isActive = activeSection === item.index;
+              <div className="flex flex-col gap-2">
+                <div className="px-4 py-2 border-b border-white/5 mb-2">
+                   <span className="text-[9px] font-mono text-electric/40 uppercase tracking-widest">Navigation_Nodes</span>
+                </div>
+                {scenes.map((item) => {
+                  const isActive = activeSection === item.index;
 
-                return (
-                  <button
-                    key={item.name}
-                    type="button"
-                    onClick={() => scrollToSection(item.index)}
-                    aria-label={item.name}
-                    className={`w-full flex items-center justify-between px-4 py-3 text-left text-[11px] font-bold uppercase tracking-[0.25em] transition-colors focus-visible:outline-none focus-visible:bg-white/10 ${
-                      isActive ? "text-electric" : "text-ghost/60 hover:text-ghost hover:bg-white/5"
-                    }`}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {item.name}
-                    <span className="text-[9px] text-ghost/25">{String(item.index + 1).padStart(2, "0")}</span>
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={item.name}
+                      type="button"
+                      onClick={() => scrollToSection(item.index)}
+                      aria-label={item.name}
+                      className={`w-full flex items-center justify-between px-4 py-4 text-left text-[11px] font-bold uppercase tracking-[0.25em] rounded-xl transition-all ${
+                        isActive ? "text-electric bg-white/5" : "text-ghost/60 hover:text-ghost hover:bg-white/5"
+                      }`}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {item.name}
+                      <span className="text-[9px] text-ghost/25">{String(item.index + 1).padStart(2, "0")}</span>
+                    </button>
+                  );
+                })}
+                
+                <div className="mt-4 pt-4 border-t border-white/5 space-y-4">
+                   <a
+                     href="/resume.pdf"
+                     download
+                     className="flex items-center justify-between px-5 py-4 bg-white text-obsidian rounded-xl font-black uppercase tracking-widest text-[10px]"
+                   >
+                     <span>Download_CV</span>
+                     <span className="w-2 h-2 rounded-full bg-obsidian animate-pulse" />
+                   </a>
+                   
+                   <div className="px-4 flex justify-between items-center opacity-30 text-[8px] font-mono tracking-widest uppercase">
+                      <span>v5.0.2 // STABLE</span>
+                      <span>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} SYNC</span>
+                   </div>
+                </div>
+              </div>
             </motion.div>
           )}
         </div>

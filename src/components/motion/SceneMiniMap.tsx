@@ -10,7 +10,7 @@ export default function SceneMiniMap() {
   const { scrollToScene } = useSmoothScroll();
 
   return (
-    <div className="fixed bottom-12 right-6 z-[150] hidden w-max flex-col items-end gap-4 pointer-events-auto md:flex">
+    <div className="fixed bottom-12 right-4 md:right-6 z-[150] flex w-max flex-col items-end gap-4 pointer-events-auto">
       {scenes.map((scene) => {
         const isActive = activeScene === scene.index;
 

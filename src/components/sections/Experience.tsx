@@ -251,7 +251,7 @@ export default function Experience() {
           </div>
           
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:max-h-[75vh] lg:overflow-y-auto custom-scrollbar pr-4 relative z-20"
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:max-h-[75vh] lg:overflow-y-auto custom-scrollbar pr-0 md:pr-4 relative z-20"
           >
             {skills.map((skill) => (
               <div
@@ -273,8 +273,9 @@ export default function Experience() {
                   front={
                     <motion.article 
                       style={{ rotateX, rotateY }}
-                      whileHover={{ scale: 1.02 }}
-                      className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors"
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors shadow-lg"
                     >
                       <SpotlightReveal className="h-full rounded-2xl pointer-events-none">
                         <div className="h-full w-full p-6 flex flex-col">

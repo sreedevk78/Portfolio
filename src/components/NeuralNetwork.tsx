@@ -83,7 +83,9 @@ export default function NeuralNetwork() {
     const initParticles = () => {
       particles = [];
       const isMobileCanvas = canvas.width < 768;
-      const particleCount = Math.floor((canvas.width * canvas.height) / (isMobileCanvas ? 25000 : 15000));
+      // Drastically reduce density for mobile performance
+      const particleDensity = isMobileCanvas ? 45000 : 15000;
+      const particleCount = Math.floor((canvas.width * canvas.height) / particleDensity);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -91,16 +93,21 @@ export default function NeuralNetwork() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isMobileCanvas = canvas.width < 768;
+      
       for (let i = 0; i < particles.length; i++) {
         particles[i].draw();
         particles[i].update();
         
+        // Mobile optimization: Skip complex connection logic if on low power or high density
+        if (isMobileCanvas && i % 2 !== 0) continue; 
+
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          const connectDist = canvas.width < 768 ? 80 : 120;
+          const connectDist = isMobileCanvas ? 65 : 120;
           if (distance < connectDist && distance > 1e-6) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - distance/800})`;

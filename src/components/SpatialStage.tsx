@@ -35,7 +35,11 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
   const { scrollYProgress } = useScroll();
 
   const cameraZRaw = useTransform(scrollYProgress, [0, 1], [0, SCENE_DEPTH * (sceneCount - 1)]);
-  const cameraZ = useSpring(cameraZRaw, { stiffness: 74, damping: 28, mass: 0.9 });
+  const cameraZ = useSpring(cameraZRaw, { 
+    stiffness: isMobile ? 60 : 74, 
+    damping: isMobile ? 32 : 28, 
+    mass: isMobile ? 1.2 : 0.9 
+  });
   const cameraRotateX = useTransform(scrollYProgress, [0, 1], [0, 1.2]);
 
   useEffect(() => {
@@ -64,6 +68,9 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
+  // On mobile: gentle pan rotation for depth feel; on desktop: full mouse tracking
+  const mobileRotateX = useTransform(springY, [-1, 1], [1.2, -1.2]);
+  const mobileRotateY = useTransform(springX, [-1, 1], [-1.2, 1.2]);
   const mouseRotateX = useTransform(springY, [-1, 1], [1.5, -1.5]);
   const mouseRotateY = useTransform(springX, [-1, 1], [-1.5, 1.5]);
   const unifiedRotateX = useTransform(
@@ -75,18 +82,21 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
     <SpatialContext.Provider value={{ mouseX: springX, mouseY: springY, scrollProgress: scrollYProgress, cameraZ }}>
       <main
         className="fixed inset-0 w-full h-screen overflow-hidden bg-[#050505] cinematic-grain pointer-events-none"
-        style={{ perspective: isMobile ? "none" : "clamp(800px, 120vw, 1400px)" }}
+        style={{ perspective: reduceMotion ? "none" : isMobile ? "clamp(600px, 140vw, 900px)" : "clamp(800px, 120vw, 1400px)" }}
       >
         <motion.div
-          style={{ transformStyle: isMobile ? "flat" : "preserve-3d" }}
+          style={{ 
+            transformStyle: "preserve-3d",
+            willChange: "transform"
+          }}
           className="absolute inset-0 pointer-events-none"
         >
           <motion.div
             style={{
-              rotateX: (reduceMotion || isMobile) ? 0 : unifiedRotateX,
-              rotateY: (reduceMotion || isMobile) ? 0 : mouseRotateY,
-              z: isMobile ? 0 : cameraZ,
-              transformStyle: isMobile ? "flat" : "preserve-3d",
+              rotateX: reduceMotion ? 0 : isMobile ? mobileRotateX : unifiedRotateX,
+              rotateY: reduceMotion ? 0 : isMobile ? mobileRotateY : mouseRotateY,
+              z: cameraZ,
+              transformStyle: "preserve-3d",
             }}
             className="w-full h-full relative"
           >

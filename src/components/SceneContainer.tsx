@@ -28,7 +28,7 @@ export default function SceneContainer({ children, sceneId }: { children: React.
   const { scrollProgress, cameraZ } = useSpatial();
   const scene = getSceneById(sceneId);
   const isMobile = useIsMobile();
-  const z = isMobile ? 0 : -scene.index * SCENE_DEPTH;
+  const z = -scene.index * SCENE_DEPTH;
   const center = getSceneProgress(scene.index);
   const segment = sceneCount > 1 ? 1 / (sceneCount - 1) : 1;
   const localProgress = useTransform(
@@ -36,10 +36,18 @@ export default function SceneContainer({ children, sceneId }: { children: React.
     [Math.max(0, center - segment), center, Math.min(1, center + segment)],
     [0, 0.5, 1]
   );
-  const distance = useTransform(cameraZ, (val) => isMobile ? Math.abs(scene.index * SCENE_DEPTH - val) : Math.abs(val + z));
+  const distance = useTransform(cameraZ, (val) => Math.abs(val + z));
 
-  const opacity = useTransform(distance, isMobile ? [0, 400, 700, 900] : [0, 300, 560, 760], [1, 0.96, 0.08, 0]);
-  const scale = useTransform(distance, [0, 760, 1200], [1, 0.97, 0.9]);
+  const opacity = useTransform(
+    distance, 
+    isMobile ? [0, 450, 800, 1000] : [0, 300, 560, 760], 
+    [1, 0.98, 0.05, 0]
+  );
+  const scale = useTransform(
+    distance, 
+    isMobile ? [0, 800, 1400] : [0, 760, 1200], 
+    [1, 0.98, 0.92]
+  );
   const sceneContrast = useTransform(distance, [0, 720], [0, 0.4]);
   const transitionGlow = useTransform(distance, [0, 240, 520, 760], [0.1, 0.16, 0.04, 0]);
   const pointerEvents = useTransform(scrollProgress, (p) => {
@@ -59,9 +67,9 @@ export default function SceneContainer({ children, sceneId }: { children: React.
         height: "100%",
         z: z,
         opacity,
-        scale: isMobile ? 1 : scale,
+        scale,
         pointerEvents,
-        transformStyle: isMobile ? "flat" : "preserve-3d"
+        transformStyle: "preserve-3d"
       }}
       className="flex items-center justify-center"
     >
