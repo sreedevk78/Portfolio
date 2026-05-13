@@ -49,16 +49,17 @@ export default function Contact() {
   const ambientOpacity = useTransform(progress, [0, 0.42, 0.9, 1], [0.08, 0.36, 0.24, 0.08]);
 
   return (
-    <section className="relative w-full h-screen flex flex-col items-center justify-center py-10 md:py-16 px-6 md:px-8 overflow-hidden stage-3d">
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-32 md:py-48 px-6 md:px-8 overflow-hidden stage-3d">
       <ParallaxLayer depth={0.9} progress={progress} yRange={[48, -70]} zRange={[-300, -80]} className="absolute inset-0 pointer-events-none">
         <motion.div style={{ opacity: ambientOpacity }} className="absolute left-1/2 top-1/2 h-[64vmin] w-[64vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-electric/15" />
         <motion.div style={{ opacity: ambientOpacity }} className="absolute inset-x-[12%] top-[22%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </ParallaxLayer>
-      <div className="max-w-5xl mx-auto w-full space-y-5 md:space-y-10 text-center relative z-10 -translate-y-24 md:-translate-y-32">
+      <div className="max-w-5xl mx-auto w-full space-y-16 md:space-y-24 text-center relative z-10 py-20">
         
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 1, ease: "circOut" }}
           style={{ y: headerY }}
           className="space-y-4 md:space-y-6"
@@ -68,7 +69,7 @@ export default function Contact() {
             Establish_Neural_Link
             <span className="w-12 h-[1px] bg-electric/30" />
           </div>
-          <h2 className="text-3xl md:text-[7.5rem] font-black leading-[0.82] tracking-tighter uppercase">
+          <h2 className="text-5xl md:text-[8rem] font-black leading-[0.82] tracking-tighter uppercase">
             <KineticText text="SAY HELLO" />
           </h2>
         </motion.div>

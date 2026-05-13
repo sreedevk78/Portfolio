@@ -117,7 +117,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, z: 0 }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="h-full"
+              className="h-[280px]"
               onClick={() => setSelectedSkill(skill)}
             >
               <FlipTile
@@ -127,18 +127,20 @@ export default function Experience() {
                     className="h-full rounded-2xl bg-white/[0.035] border border-white/10 hover:border-electric/45 transition-colors stage-3d cursor-pointer"
                   >
                     <SpotlightReveal className="h-full rounded-2xl">
-                      <div className="h-full w-full p-5 flex flex-col overflow-hidden">
-                        <div className="flex justify-between items-center mb-5 shrink-0">
+                      <div className="h-full w-full p-5 flex flex-col">
+                        <div className="flex justify-between items-center mb-4 shrink-0">
                           <div className="w-9 h-9 rounded-xl bg-electric/10 flex items-center justify-center">
                             <Activity className="w-4 h-4 text-electric" />
                           </div>
                           <span className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest">{skill.status}</span>
                         </div>
 
-                        <h4 className="text-xl font-black uppercase tracking-tighter mb-1 shrink-0">{skill.name}</h4>
-                        <span className="text-[10px] font-mono text-electric uppercase tracking-[0.1em] shrink-0">{skill.level}</span>
+                        <div className="h-16 flex flex-col justify-center shrink-0">
+                          <h4 className="text-xl font-black uppercase tracking-tighter leading-tight mb-1">{skill.name}</h4>
+                          <span className="text-[10px] font-mono text-electric uppercase tracking-[0.1em]">{skill.level}</span>
+                        </div>
                         
-                        <div className="relative flex-1 mt-4 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] pointer-events-none">
+                        <div className="relative flex-1 mt-3 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] pointer-events-none">
                           <div className="absolute inset-x-0 top-0 animate-auto-scroll">
                             <p className="text-[11px] text-ghost/60 font-mono leading-relaxed">
                               {skill.useCase}
@@ -154,20 +156,22 @@ export default function Experience() {
                 }
                 back={
                   <div className="h-full flex flex-col overflow-hidden rounded-2xl border border-electric/35 bg-electric/[0.07] p-5 text-left shadow-[0_0_34px_rgba(59,130,246,0.12)]">
-                    <div className="mb-5 flex items-center justify-between shrink-0">
+                    <div className="mb-4 flex items-center justify-between shrink-0">
                       <span className="text-[9px] font-mono uppercase tracking-[0.35em] text-electric">Technical_Core</span>
                       <span className="text-[11px] font-mono text-ghost/70">{skill.level}</span>
                     </div>
-                    <h4 className="text-2xl font-black uppercase tracking-tighter text-white shrink-0">{skill.name}</h4>
+                    <div className="h-16 flex flex-col justify-center shrink-0">
+                      <h4 className="text-2xl font-black uppercase tracking-tighter text-white leading-tight">{skill.name}</h4>
+                    </div>
                     
-                    <div className="mt-4 flex-1 overflow-hidden">
+                    <div className="mt-3 flex-1 overflow-hidden">
                       <p className="text-[11px] font-mono leading-relaxed text-ghost/70">
                         {skill.useCase}
                       </p>
                     </div>
                     
-                    <div className="mt-5 h-[1px] w-full shrink-0 bg-gradient-to-r from-electric/60 to-transparent" />
-                    <span className="mt-4 block text-[9px] font-mono uppercase tracking-[0.3em] text-ghost/45 shrink-0">Click to expand details</span>
+                    <div className="mt-4 h-[1px] w-full shrink-0 bg-gradient-to-r from-electric/60 to-transparent" />
+                    <span className="mt-3 block text-[9px] font-mono uppercase tracking-[0.3em] text-ghost/45 shrink-0">Click for details</span>
                   </div>
                 }
               />
