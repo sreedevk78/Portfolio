@@ -77,17 +77,17 @@ export default function ProjectShowcase() {
     setSelectedProject(projects[prevIndex]);
   };
 
-  const clusterRotateX = useTransform(mouseY, [-1, 1], [2, -2]);
-  const clusterRotateY = useTransform(mouseX, [-1, 1], [-2, 2]);
-  const titleY = useTransform(progress, [0, 0.35, 1], [70, 0, -50]);
-  const clusterZ = useTransform(progress, [0, 0.45, 1], [-260, 60, 180]);
-  const clusterScale = useTransform(progress, [0, 0.45, 1], [0.92, 1, 1.04]);
+  const clusterRotateX = useTransform(mouseY, [-1, 1], [1, -1]);
+  const clusterRotateY = useTransform(mouseX, [-1, 1], [-1, 1]);
+  const titleY = useTransform(progress, [0, 0.45, 1], [0, 0, 0]);
+  const clusterZ = useTransform(progress, [0, 0.45, 1], [-80, 0, 40]);
+  const clusterScale = useTransform(progress, [0, 0.45, 1], [0.96, 1, 1.02]);
 
   return (
-    <section className="relative w-full h-screen flex flex-col justify-center py-16 md:py-20 px-5 md:px-8 overflow-hidden stage-3d">
-      <ParallaxLayer depth={0.7} progress={progress} yRange={[20, -28]} zRange={[-240, -80]} className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-[6%] top-[18%] h-40 w-[1px] bg-gradient-to-b from-transparent via-electric/25 to-transparent rotate-12" />
-        <div className="absolute right-[9%] bottom-[16%] h-24 w-56 border border-white/10 bg-white/[0.018]" />
+    <section className="relative w-full min-h-screen py-24 md:py-32 px-5 md:px-8 overflow-hidden stage-3d">
+      <ParallaxLayer depth={0.4} progress={progress} yRange={[15, -15]} className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-[6%] top-[18%] h-40 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent rotate-12" />
+        <div className="absolute right-[9%] bottom-[16%] h-24 w-56 border border-white/5" />
       </ParallaxLayer>
 
       <motion.div style={{ y: titleY }} className="max-w-6xl mx-auto w-full mb-5 md:mb-8 relative z-10">
