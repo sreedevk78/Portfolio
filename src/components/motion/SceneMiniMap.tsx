@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { scenes } from "@/lib/scenes";
 import { useSmoothScroll } from "@/components/SmoothScroll";
 import { useActiveScene } from "@/components/motion/useActiveScene";
