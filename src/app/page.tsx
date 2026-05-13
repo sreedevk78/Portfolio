@@ -20,16 +20,20 @@ export default function Home() {
   return (
     <>
       <SceneLoader />
-      <Navbar />
-      <ScrollProgress />
-      <CinematicCursor />
-      <CinematicTimeline />
-      <SocialDock />
-      <SceneMiniMap />
-      <FloatingTerminal />
-      <StatusBar />
-
-      <SpatialStage>
+      <SpatialStage
+        overlay={
+          <>
+            <Navbar />
+            <ScrollProgress />
+            <CinematicCursor />
+            <CinematicTimeline />
+            <SocialDock />
+            <SceneMiniMap />
+            <FloatingTerminal />
+            <StatusBar />
+          </>
+        }
+      >
         <SceneContainer sceneId="hero">
           <Hero />
         </SceneContainer>
