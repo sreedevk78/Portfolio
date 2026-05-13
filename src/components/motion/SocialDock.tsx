@@ -26,7 +26,7 @@ const socialLinks = [
 
 export default function SocialDock() {
   return (
-    <div className="fixed bottom-6 left-1/2 z-[150] hidden -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-obsidian/70 p-2 shadow-2xl shadow-black/30 md:flex">
+    <div className="fixed bottom-6 left-1/2 z-[220] hidden -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-obsidian/70 p-2 shadow-2xl shadow-black/30 pointer-events-auto md:flex">
       {socialLinks.map((item) => (
         <MagneticTarget key={item.href} strength={8}>
           <a

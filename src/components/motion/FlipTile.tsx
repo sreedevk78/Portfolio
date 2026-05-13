@@ -8,9 +8,11 @@ type FlipTileProps = {
   back: React.ReactNode;
   className?: string;
   ariaLabel?: string;
+  /** When the tile sits inside an outer focusable control (e.g. role="button"), omit inner tabIndex. */
+  omitTabIndex?: boolean;
 };
 
-export default function FlipTile({ front, back, className, ariaLabel }: FlipTileProps) {
+export default function FlipTile({ front, back, className, ariaLabel, omitTabIndex }: FlipTileProps) {
   const reduceMotion = useReducedMotion();
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -25,8 +27,8 @@ export default function FlipTile({ front, back, className, ariaLabel }: FlipTile
 
   return (
     <motion.div
-      tabIndex={0}
-      aria-label={ariaLabel}
+      tabIndex={omitTabIndex ? undefined : 0}
+      aria-label={omitTabIndex ? undefined : ariaLabel}
       className={`group/scroll relative min-h-48 cursor-pointer outline-none [perspective:1000px] ${className ?? ""}`}
       whileHover={{ y: -6 }}
       whileFocus={{ y: -6 }}

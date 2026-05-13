@@ -1,12 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValueEvent } from "framer-motion";
 import { useSpatial } from "@/components/SpatialStage";
 import { useEffect, useState } from "react";
 
 export default function FloatingTerminal() {
   const { cameraZ, scrollProgress } = useSpatial();
   const [logs, setLogs] = useState<string[]>([]);
+  const [zUnits, setZUnits] = useState(() => cameraZ.get().toFixed(0));
+  const [syncPct, setSyncPct] = useState(() => (scrollProgress.get() * 100).toFixed(1));
+
+  useMotionValueEvent(cameraZ, "change", (latest) => {
+    setZUnits(latest.toFixed(0));
+  });
+  useMotionValueEvent(scrollProgress, "change", (latest) => {
+    setSyncPct((latest * 100).toFixed(1));
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,15 +48,11 @@ export default function FloatingTerminal() {
       <div className="pt-4 border-t border-white/5 space-y-1">
         <div className="flex justify-between gap-8">
           <span className="text-[8px] font-mono text-ghost/20 uppercase tracking-widest">Z_Space_POS</span>
-          <motion.span className="text-[8px] font-mono text-white/40 uppercase tracking-widest">
-            {cameraZ.get().toFixed(0)} units
-          </motion.span>
+          <span className="text-[8px] font-mono text-white/40 uppercase tracking-widest">{zUnits} units</span>
         </div>
         <div className="flex justify-between gap-8">
           <span className="text-[8px] font-mono text-ghost/20 uppercase tracking-widest">Neural_Sync</span>
-          <motion.span className="text-[8px] font-mono text-white/40 uppercase tracking-widest">
-            {(scrollProgress.get() * 100).toFixed(1)}%
-          </motion.span>
+          <span className="text-[8px] font-mono text-white/40 uppercase tracking-widest">{syncPct}%</span>
         </div>
       </div>
     </div>

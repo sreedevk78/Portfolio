@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react";
 import { motion, type MotionValue, useTransform } from "framer-motion";
 import { useSpatial } from "@/components/SpatialStage";
-import { getSceneById, getSceneProgress, SCENE_DEPTH, type SceneId } from "@/lib/scenes";
+import { getSceneById, getSceneIndexFromProgress, getSceneProgress, SCENE_DEPTH, sceneCount, type SceneId } from "@/lib/scenes";
 
 type SceneContextValue = {
   sceneId: SceneId;
@@ -28,7 +28,7 @@ export default function SceneContainer({ children, sceneId }: { children: React.
   const scene = getSceneById(sceneId);
   const z = -scene.index * SCENE_DEPTH;
   const center = getSceneProgress(scene.index);
-  const segment = 1 / 4;
+  const segment = sceneCount > 1 ? 1 / (sceneCount - 1) : 1;
   const localProgress = useTransform(
     scrollProgress,
     [Math.max(0, center - segment), center, Math.min(1, center + segment)],
@@ -40,7 +40,10 @@ export default function SceneContainer({ children, sceneId }: { children: React.
   const scale = useTransform(distance, [0, 760, 1200], [1, 0.97, 0.9]);
   const sceneContrast = useTransform(distance, [0, 720], [0, 0.4]);
   const transitionGlow = useTransform(distance, [0, 240, 520, 760], [0.1, 0.16, 0.04, 0]);
-  const pointerEvents = useTransform(distance, (value) => value < 620 ? "auto" : "none");
+  const pointerEvents = useTransform(scrollProgress, (p) => {
+    if (!Number.isFinite(p)) return "none";
+    return getSceneIndexFromProgress(p) === scene.index ? "auto" : "none";
+  });
 
   return (
     <SceneContext.Provider value={{ sceneId, sceneIndex: scene.index, progress: localProgress }}>

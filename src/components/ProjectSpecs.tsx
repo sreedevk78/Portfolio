@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cpu, Database, Activity, GitBranch, Terminal } from "lucide-react";
+import { Cpu, Database, Activity, GitBranch, Terminal, type LucideIcon } from "lucide-react";
 
 interface SpecProps {
   projectId: number;
@@ -11,7 +11,7 @@ const projectData: Record<number, {
   logicIndex: number;
   dataFlow: string;
   metrics: { label: string; value: string; color: string }[];
-  deepDive: { icon: any; title: string; desc: string }[];
+  deepDive: { icon: LucideIcon; title: string; desc: string }[];
 }> = {
   1: {
     logicIndex: 94,

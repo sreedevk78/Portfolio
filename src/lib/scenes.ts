@@ -3,37 +3,37 @@ export const SCENE_DEPTH = 1100;
 export const scenes = [
   {
     id: "hero",
-    name: "Origin",
+    name: "Intro",
     shortName: "SK.",
     eyebrow: "Neural_Interface_v5.0",
     index: 0,
   },
   {
     id: "about",
-    name: "Archive",
-    shortName: "Archive",
-    eyebrow: "Identity_Archive",
+    name: "About",
+    shortName: "About",
+    eyebrow: "About_Profile",
     index: 1,
   },
   {
     id: "projects",
-    name: "Logic",
-    shortName: "Logic",
-    eyebrow: "Project_Archive_Subsystem",
+    name: "Projects",
+    shortName: "Work",
+    eyebrow: "Selected_Work",
     index: 2,
   },
   {
     id: "experience",
-    name: "Core",
-    shortName: "Core",
-    eyebrow: "Intelligence_Background",
+    name: "Experience",
+    shortName: "Skills",
+    eyebrow: "Experience_Skills",
     index: 3,
   },
   {
     id: "contact",
-    name: "Nexus",
-    shortName: "Nexus",
-    eyebrow: "Establish_Neural_Link",
+    name: "Contact",
+    shortName: "Contact",
+    eyebrow: "Contact_Link",
     index: 4,
   },
 ] as const;
@@ -42,6 +42,7 @@ export type SceneId = (typeof scenes)[number]["id"];
 export type Scene = (typeof scenes)[number];
 
 export const sceneCount = scenes.length;
+/** Document scroll height; tune with scene count / perceived scene length so Lenis + scrollYProgress align with the Z-stage. */
 export const scrollHeightClass = "h-[520vh]";
 
 export function getSceneById(id: SceneId) {

@@ -40,14 +40,14 @@ export default function SpatialStage({ children, overlay }: { children: React.Re
     const isMobile = window.matchMedia("(pointer: coarse)").matches;
     
     if (isMobile) {
-      // Slow auto-pan for mobile to keep the stage alive without a mouse
+      let rafId = 0;
       const pan = () => {
         const time = Date.now() / 3000;
         mouseX.set(Math.sin(time) * 0.4);
         mouseY.set(Math.cos(time * 0.7) * 0.4);
-        requestAnimationFrame(pan);
+        rafId = requestAnimationFrame(pan);
       };
-      const rafId = requestAnimationFrame(pan);
+      rafId = requestAnimationFrame(pan);
       return () => cancelAnimationFrame(rafId);
     }
 

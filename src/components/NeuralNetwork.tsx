@@ -16,7 +16,7 @@ export default function NeuralNetwork() {
     if (!ctx) return;
 
     let particles: Particle[] = [];
-    let animationFrameId: number;
+    let animationFrameId = 0;
     const mouse = { x: -1000, y: -1000 };
 
     const resize = () => {
@@ -54,6 +54,9 @@ export default function NeuralNetwork() {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 1e-6) {
+          return;
+        }
         const forceDirectionX = dx / distance;
         const forceDirectionY = dy / distance;
         const maxDistance = 150;
@@ -91,12 +94,12 @@ export default function NeuralNetwork() {
         particles[i].draw();
         particles[i].update();
         
-        for (let j = i; j < particles.length; j++) {
+        for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 120) {
+          if (distance < 120 && distance > 1e-6) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - distance/800})`;
             ctx.lineWidth = 0.5;
@@ -110,17 +113,20 @@ export default function NeuralNetwork() {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", (e) => {
+    const onMouseMove = (e: MouseEvent) => {
       mouse.x = e.x;
       mouse.y = e.y;
-    });
+    };
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", onMouseMove);
 
     resize();
     animate();
 
     return () => {
       window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, [reduceMotion]);

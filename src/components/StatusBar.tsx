@@ -1,17 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Download, Terminal, Wifi, Battery, Activity } from "lucide-react";
-import { useActiveScene } from "@/components/motion/useActiveScene";
-import { scenes } from "@/lib/scenes";
+import { Download, Wifi, Battery } from "lucide-react";
 
 export default function StatusBar() {
-  const activeIndex = useActiveScene();
-  const currentScene = scenes[activeIndex];
-
   return (
-    <div className="fixed top-0 inset-x-0 z-[150] pointer-events-none">
-      <div className="max-w-[1800px] mx-auto px-6 py-4 flex items-center justify-between">
+    <div className="fixed top-20 left-0 right-0 z-[150] pointer-events-none md:top-24">
+      <div className="max-w-[1800px] mx-auto px-6 py-2 md:px-8 md:py-2.5 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-electric animate-pulse" />
@@ -23,12 +17,7 @@ export default function StatusBar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-8 pointer-events-auto">
-          <div className="hidden sm:flex flex-col items-end">
-            <span className="text-[8px] font-mono text-ghost/30 uppercase tracking-[0.4em]">Current_Node</span>
-            <span className="text-[11px] font-black text-white uppercase tracking-tighter">{currentScene?.name}</span>
-          </div>
-          
+        <div className="pointer-events-auto">
           <a
             href="/resume.pdf"
             download

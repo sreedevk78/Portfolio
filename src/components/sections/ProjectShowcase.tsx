@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useTransform } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
-import { ExternalLink, X, ArrowRight, Activity, Cpu, Layers, Zap } from "lucide-react";
+import { ExternalLink, X, ArrowRight, Layers } from "lucide-react";
 import { useSpatial } from "@/components/SpatialStage";
 import { useSceneProgress } from "@/components/SceneContainer";
 import KineticText from "@/components/motion/KineticText";
@@ -136,7 +136,7 @@ export default function ProjectShowcase() {
               <TiltCard className="h-full w-full">
                 <SpotlightReveal className="h-full w-full">
                   <div className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                   <Image src={project.image} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover opacity-32 saturate-[0.75] contrast-110" />
+                   <Image src={project.image} alt={`${project.title} project preview`} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover opacity-32 saturate-[0.75] contrast-110" />
                    <div className="absolute inset-0 bg-gradient-to-b from-obsidian/5 via-obsidian/25 to-obsidian z-10" />
                    <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent,rgba(59,130,246,0.08),transparent)] z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -262,7 +262,7 @@ export default function ProjectShowcase() {
                      rel="noreferrer"
                      className="inline-flex items-center gap-4 px-10 py-5 bg-white text-obsidian rounded-2xl font-black uppercase tracking-widest hover:bg-electric hover:text-white transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian"
                    >
-                     <span>Launch Live Archive</span>
+                     <span>Open GitHub</span>
                      <ExternalLink className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                    </a>
                 </div>

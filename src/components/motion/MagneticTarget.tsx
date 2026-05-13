@@ -20,6 +20,7 @@ export default function MagneticTarget({ children, strength = 18, style, onMouse
     <motion.div
       ref={ref}
       data-magnetic
+      className="pointer-events-auto"
       onMouseMove={(event) => {
         const bounds = ref.current?.getBoundingClientRect();
         if (bounds) {

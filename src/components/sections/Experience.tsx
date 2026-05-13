@@ -2,12 +2,11 @@
 
 import { motion, useTransform, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Activity, X, Briefcase, GraduationCap, Award } from "lucide-react";
 import { useSpatial } from "@/components/SpatialStage";
 import { useSceneProgress } from "@/components/SceneContainer";
 import KineticText from "@/components/motion/KineticText";
-import MagneticTarget from "@/components/motion/MagneticTarget";
 import ParallaxLayer from "@/components/motion/ParallaxLayer";
 import FlipTile from "@/components/motion/FlipTile";
 import SpotlightReveal from "@/components/motion/SpotlightReveal";
@@ -171,15 +170,31 @@ const skills = [
   }
 ];
 
+type ExperienceItem = (typeof items)[number];
+type ExperienceSkill = (typeof skills)[number];
+
 export default function Experience() {
   const { mouseX, mouseY } = useSpatial();
   const { progress } = useSceneProgress();
-  const [selectedSkill, setSelectedSkill] = useState<typeof skills[0] | null>(null);
-  const [selectedItem, setSelectedItem] = useState<typeof items[0] | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<ExperienceSkill | null>(null);
+  const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
+
+  const closeModal = useCallback(() => {
+    setSelectedSkill(null);
+    setSelectedItem(null);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedSkill && !selectedItem) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedSkill, selectedItem, closeModal]);
 
   const rotateX = useTransform(mouseY, [-1, 1], [0.3, -0.3]);
   const rotateY = useTransform(mouseX, [-1, 1], [-0.3, 0.3]);
-  const railOpacity = useTransform(progress, [0, 0.35, 0.9, 1], [0.05, 0.3, 0.15, 0.05]);
 
   return (
     <section className="relative w-full min-h-screen lg:h-screen py-16 md:py-20 px-6 md:px-8 bg-obsidian/20 overflow-hidden">
@@ -204,9 +219,10 @@ export default function Experience() {
 
           <div className="space-y-8 max-h-[60vh] overflow-y-auto custom-scrollbar pr-4">
             {items.map((item) => (
-              <div
+              <button
                 key={item.title}
-                className="flex gap-6 md:gap-8 group cursor-pointer"
+                type="button"
+                className="flex gap-6 md:gap-8 group cursor-pointer text-left w-full"
                 onClick={() => setSelectedItem(item)}
               >
                 <div className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center p-3 transition-all duration-500 group-hover:border-electric/40 ${item.bgColor}`}>
@@ -222,7 +238,7 @@ export default function Experience() {
                   <p className="text-ghost/60 text-xs leading-relaxed max-w-sm font-medium uppercase tracking-wide">{item.description}</p>
                   <span className="inline-block text-[9px] font-mono text-electric/40 uppercase tracking-widest border-b border-electric/20 pb-0.5 opacity-0 group-hover:opacity-100 transition-opacity">Read Full Story</span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -237,14 +253,23 @@ export default function Experience() {
           <div
             className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 max-h-[75vh] overflow-y-auto custom-scrollbar pr-4 relative z-20"
           >
-            {skills.map((skill, index) => (
-              <button
+            {skills.map((skill) => (
+              <div
                 key={skill.name}
-                type="button"
+                role="button"
+                tabIndex={0}
+                aria-label={`${skill.name}: ${skill.useCase} Open full details.`}
+                className="h-[250px] w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-electric rounded-2xl relative z-30 cursor-pointer"
                 onClick={() => setSelectedSkill(skill)}
-                className="h-[250px] w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-electric rounded-2xl relative z-30"
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setSelectedSkill(skill);
+                  }
+                }}
               >
                 <FlipTile
+                  omitTabIndex
                   front={
                     <motion.article 
                       style={{ rotateX, rotateY }}
@@ -293,7 +318,7 @@ export default function Experience() {
                     </div>
                   }
                 />
-              </button>
+              </div>
             ))}
           </div>
         </div>
@@ -302,20 +327,21 @@ export default function Experience() {
       {/* Expanded View Modal (Skills & Experience) */}
       <AnimatePresence>
         {(selectedSkill || selectedItem) && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12">
+          <div className="fixed inset-0 z-[260] flex items-center justify-center p-6 md:p-12 pointer-events-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => { setSelectedSkill(null); setSelectedItem(null); }}
+              onClick={closeModal}
               className="absolute inset-0 bg-obsidian/95 backdrop-blur-xl"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl bg-onyx border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+              className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar bg-onyx border border-white/10 rounded-3xl shadow-2xl"
               data-lenis-prevent="true"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="p-8 md:p-12 space-y-8">
                 <div className="flex justify-between items-start">
@@ -333,7 +359,9 @@ export default function Experience() {
                     </h3>
                   </div>
                   <button
-                    onClick={() => { setSelectedSkill(null); setSelectedItem(null); }}
+                    type="button"
+                    aria-label="Close details"
+                    onClick={closeModal}
                     className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
                   >
                     <X className="w-6 h-6" />
@@ -344,8 +372,8 @@ export default function Experience() {
                   {selectedSkill && (
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {selectedSkill.metrics?.map((m: any, i: number) => (
-                          <div key={i} className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl space-y-1">
+                        {selectedSkill.metrics?.map((m, i) => (
+                          <div key={`${m.label}-${i}`} className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl space-y-1">
                             <span className="text-[8px] font-mono text-ghost/40 uppercase tracking-widest">{m.label}</span>
                             <span className={`block text-lg font-black font-mono ${m.color}`}>{m.value}</span>
                           </div>
@@ -364,8 +392,8 @@ export default function Experience() {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-white/10">
-                        {selectedSkill.examples?.map((ex: any, i: number) => (
-                          <div key={i} className="space-y-3">
+                        {selectedSkill.examples?.map((ex, i) => (
+                          <div key={`${ex.title}-${i}`} className="space-y-3">
                             <h5 className="text-[11px] font-bold uppercase tracking-widest text-white">{ex.title}</h5>
                             <p className="text-[10px] leading-relaxed text-ghost/50 uppercase tracking-wide">
                               {ex.desc}

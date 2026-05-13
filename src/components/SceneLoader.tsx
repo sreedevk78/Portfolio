@@ -1,25 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function SceneLoader() {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const completeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(() => setIsComplete(true), 800); // Slightly longer for anticipation
+        const next = Math.min(100, prev + (Math.random() * 8 + 2));
+        if (next >= 100) {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+          completeTimeoutRef.current = setTimeout(() => setIsComplete(true), 800);
           return 100;
         }
-        return prev + (Math.random() * 8 + 2); // Slower, more deliberate progress
+        return next;
       });
     }, 100);
 
-    return () => clearInterval(timer);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (completeTimeoutRef.current) clearTimeout(completeTimeoutRef.current);
+    };
   }, []);
 
   return (
