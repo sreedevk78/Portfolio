@@ -97,6 +97,28 @@ export default function About() {
                 </div>
               </SpotlightReveal>
             </motion.button>
+          <ParallaxLayer depth={0.55} progress={progress} yRange={[10, -20]} className="absolute left-20 bottom-0 z-10">
+            <motion.button
+              type="button"
+              onClick={() => setActivePhoto(2)}
+              className="relative w-56 h-72 rounded-2xl overflow-hidden border border-white/10 shadow-2xl opacity-80 bg-white/[0.02] text-left hover:opacity-100"
+            >
+              <SpotlightReveal className="h-full w-full">
+                <Image
+                  src={profilePhotos[2].src}
+                  alt={profilePhotos[2].alt}
+                  fill
+                  sizes="224px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: profilePhotos[2].objectPosition }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/86 via-obsidian/20 to-transparent z-10" />
+                <div className="absolute bottom-5 left-5 z-20">
+                  <span className="block text-[9px] font-mono text-electric uppercase tracking-[0.26em]">Identity_03</span>
+                  <span className="mt-1 block text-lg font-black uppercase tracking-tighter text-white">{profilePhotos[2].label}</span>
+                </div>
+              </SpotlightReveal>
+            </motion.button>
           </ParallaxLayer>
         </motion.div>
 

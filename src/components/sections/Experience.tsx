@@ -66,6 +66,7 @@ export default function Experience() {
       <ParallaxLayer depth={0.4} progress={progress} yRange={[20, -20]} className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute left-[10%] top-0 h-full w-[1px] bg-white/10" />
         <div className="absolute right-[15%] top-[30%] h-64 w-64 border border-white/5 rounded-full" />
+        <div className="absolute right-[12%] top-[20%] h-48 w-48 border border-white/10 rotate-45" />
       </ParallaxLayer>
 
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-16 lg:gap-32">
