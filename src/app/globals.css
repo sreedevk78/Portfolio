@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #050505;
+  --color-onyx: #0a0a0a;
+  --color-ghost: #f8fafc;
+  --color-electric: #3b82f6;
+  --color-royal: #8b5cf6;
+  
+  --font-editorial: "Inter", sans-serif;
+  
+  --animation-reveal: reveal 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+:root {
+  --background: #050505;
+  --foreground: #f8fafc;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
+  
+  html, body {
+    @apply bg-obsidian text-ghost antialiased selection:bg-electric/30 overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  button,
+  a,
+  [role="button"] {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tighter font-bold uppercase;
+  }
+}
+
+@layer utilities {
+  .stage-3d {
+    transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .focal-anchor {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    filter: none !important;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.3);
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 50px -10px rgba(139, 92, 246, 0.3);
+  }
+
+  .text-edge-outline {
+    -webkit-text-stroke: 1px rgba(248, 250, 252, 0.2);
+    color: transparent;
+  }
+
+  .mask-reveal {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Cinematic Post-Processing */
+  .cinematic-grain::after {
+    content: "";
+    @apply fixed inset-0 pointer-events-none z-[9999] opacity-[0.025];
+    background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.18) 0 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .cinematic-bloom {
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .text-sharp-glow {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+    -webkit-text-stroke: 0.1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Cinematic Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 243, 255, 0.2);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 243, 255, 0.5);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .neural-rain {
+    animation: neural-rain linear infinite;
+    will-change: transform;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@keyframes reveal {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes neural-rain {
+  from { transform: translate3d(0, -120%, 0); }
+  to { transform: translate3d(0, 220%, 0); }
+}
+
+/* Lenis CSS */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .timeline-glow,
+  [data-magnetic] {
+    transform: none !important;
+  }
+}
+
+@keyframes auto-scroll-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+.animate-auto-scroll {
+  animation: auto-scroll-y 12s linear infinite;
+}
+
+.group\/scroll:hover .animate-auto-scroll {
+  animation-play-state: paused;
+}
