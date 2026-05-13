@@ -57,49 +57,48 @@ export default function Experience() {
   const { progress } = useSceneProgress();
   const [selectedSkill, setSelectedSkill] = useState<typeof skills[0] | null>(null);
 
-  const rotateX = useTransform(mouseY, [-1, 1], [1.5, -1.5]);
-  const rotateY = useTransform(mouseX, [-1, 1], [-1.5, 1.5]);
-  const leftY = useTransform(progress, [0, 0.4, 1], [80, 0, -36]);
-  const gridZ = useTransform(progress, [0, 0.5, 1], [-180, 60, 130]);
-  const railOpacity = useTransform(progress, [0, 0.35, 0.9, 1], [0.1, 0.75, 0.4, 0.12]);
+  const rotateX = useTransform(mouseY, [-1, 1], [0.5, -0.5]);
+  const rotateY = useTransform(mouseX, [-1, 1], [-0.5, 0.5]);
+  const leftY = useTransform(progress, [0, 0.45, 1], [30, 0, -20]);
+  const gridZ = useTransform(progress, [0, 0.45, 1], [-80, 0, 40]);
+  const railOpacity = useTransform(progress, [0, 0.35, 0.9, 1], [0.1, 0.5, 0.25, 0.1]);
 
   return (
-    <section className="relative w-full h-screen flex flex-col justify-center py-16 md:py-24 px-6 md:px-8 overflow-hidden stage-3d">
-      <ParallaxLayer depth={0.8} progress={progress} yRange={[44, -50]} zRange={[-280, -120]} className="absolute inset-0 pointer-events-none">
-        <motion.div style={{ opacity: railOpacity }} className="absolute left-[8%] top-[10%] h-[80%] w-[1px] bg-gradient-to-b from-transparent via-electric/35 to-transparent" />
-        <motion.div style={{ opacity: railOpacity }} className="absolute right-[12%] top-[20%] h-48 w-48 border border-white/10 rotate-45" />
+    <section className="relative w-full min-h-screen flex flex-col justify-center py-24 md:py-32 px-6 md:px-8 overflow-hidden stage-3d">
+      <ParallaxLayer depth={0.8} progress={progress} yRange={[20, -20]} zRange={[-180, -40]} className="absolute inset-0 pointer-events-none">
+        <motion.div style={{ opacity: railOpacity }} className="absolute left-[8%] top-[10%] h-[80%] w-[1px] bg-gradient-to-b from-transparent via-electric/25 to-transparent" />
       </ParallaxLayer>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 xl:gap-24 items-center stage-3d">
-        <motion.div style={{ y: leftY }} className="space-y-10 relative z-10">
-          <div className="space-y-5">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-16 md:gap-24 items-start lg:items-center stage-3d">
+        <motion.div style={{ y: leftY }} className="space-y-8 relative z-10">
+          <div className="space-y-4">
             <div className="flex items-center gap-3 text-electric font-mono text-[10px] uppercase tracking-[0.5em]">
               <span className="w-8 h-[1px] bg-electric/30" />
               Professional_Path
             </div>
-            <h2 className="text-5xl md:text-[8rem] font-black leading-[0.85] uppercase tracking-tighter">
+            <h2 className="text-4xl md:text-[6.5rem] font-black leading-[0.85] uppercase tracking-tighter">
               <KineticText text={"EXPERIENCE\n& CORE"} lineClassName={(index) => index === 1 ? "text-edge-outline" : ""} />
             </h2>
           </div>
 
-          <div className="space-y-4 md:space-y-5">
+          <div className="space-y-4">
             {items.map((item) => (
               <MagneticTarget
                 key={item.title}
-                className="flex gap-5 md:gap-8 group stage-3d"
-                strength={8}
+                className="flex gap-5 md:gap-6 group stage-3d"
+                strength={6}
               >
-                <div className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center p-2 transition-all duration-500 group-hover:border-electric/40 ${item.bgColor}`}>
+                <div className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center p-2 transition-all duration-500 group-hover:border-electric/40 ${item.bgColor}`}>
                   <div className="relative w-full h-full">
-                    <Image src={item.logo} alt={item.title} fill sizes="96px" className="object-contain" />
+                    <Image src={item.logo} alt={item.title} fill sizes="80px" className="object-contain" />
                   </div>
                 </div>
-                <div className="space-y-3 py-1">
-                  <div className="space-y-1">
-                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter group-hover:text-electric transition-colors">{item.title}</h3>
-                    <p className="text-electric font-mono text-[10px] uppercase tracking-[0.25em]">{item.subtitle}</p>
+                <div className="space-y-2 py-1">
+                  <div className="space-y-0.5">
+                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter group-hover:text-electric transition-colors">{item.title}</h3>
+                    <p className="text-electric font-mono text-[9px] uppercase tracking-[0.25em]">{item.subtitle}</p>
                   </div>
-                  <p className="text-ghost/65 text-xs md:text-sm leading-relaxed max-w-md font-medium uppercase tracking-wide">{item.description}</p>
+                  <p className="text-ghost/65 text-[11px] leading-relaxed max-w-sm font-medium uppercase tracking-wide">{item.description}</p>
                 </div>
               </MagneticTarget>
             ))}
@@ -108,16 +107,16 @@ export default function Experience() {
 
         <motion.div
           style={{ rotateX, rotateY, z: gridZ }}
-          className="relative stage-3d grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6"
+          className="relative stage-3d grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5"
         >
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, z: -200 }}
+              initial={{ opacity: 0, z: -100 }}
               whileInView={{ opacity: 1, z: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
+              transition={{ delay: index * 0.08, duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="h-[280px]"
+              className="h-[300px]"
               onClick={() => setSelectedSkill(skill)}
             >
               <FlipTile

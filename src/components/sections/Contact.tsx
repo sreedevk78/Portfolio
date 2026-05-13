@@ -44,46 +44,40 @@ export default function Contact() {
 
   const rotateX = useTransform(mouseY, [-1, 1], [1, -1]);
   const rotateY = useTransform(mouseX, [-1, 1], [-1, 1]);
-  const headerY = useTransform(progress, [0, 0.45, 1], [80, 0, -80]);
-  const gridZ = useTransform(progress, [0, 0.45, 1], [-220, 40, 160]);
-  const ambientOpacity = useTransform(progress, [0, 0.42, 0.9, 1], [0.08, 0.36, 0.24, 0.08]);
+  const headerY = useTransform(progress, [0, 0.45, 1], [30, 0, -30]);
+  const gridZ = useTransform(progress, [0, 0.45, 1], [-120, 0, 80]);
+  const ambientOpacity = useTransform(progress, [0, 0.42, 0.9, 1], [0.08, 0.3, 0.2, 0.08]);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-32 md:py-48 px-6 md:px-8 overflow-hidden stage-3d">
-      <ParallaxLayer depth={0.9} progress={progress} yRange={[48, -70]} zRange={[-300, -80]} className="absolute inset-0 pointer-events-none">
-        <motion.div style={{ opacity: ambientOpacity }} className="absolute left-1/2 top-1/2 h-[64vmin] w-[64vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-electric/15" />
-        <motion.div style={{ opacity: ambientOpacity }} className="absolute inset-x-[12%] top-[22%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6 md:px-8 overflow-hidden stage-3d">
+      <ParallaxLayer depth={0.9} progress={progress} yRange={[20, -20]} zRange={[-150, -40]} className="absolute inset-0 pointer-events-none">
+        <motion.div style={{ opacity: ambientOpacity }} className="absolute left-1/2 top-1/2 h-[64vmin] w-[64vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-electric/10" />
       </ParallaxLayer>
-      <div className="max-w-5xl mx-auto w-full space-y-16 md:space-y-24 text-center relative z-10 py-20">
-        
+
+      <div className="max-w-6xl mx-auto w-full space-y-12 md:space-y-20 text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: "circOut" }}
+          transition={{ duration: 0.8 }}
           style={{ y: headerY }}
-          className="space-y-4 md:space-y-6"
+          className="space-y-4"
         >
-          <div className="flex items-center justify-center gap-4 text-electric font-mono text-[10px] tracking-[0.6em] uppercase">
-            <span className="w-12 h-[1px] bg-electric/30" />
-            Establish_Neural_Link
-            <span className="w-12 h-[1px] bg-electric/30" />
+          <div className="flex items-center justify-center gap-4 text-electric font-mono text-[9px] tracking-[0.5em] uppercase">
+            <span className="w-8 h-[1px] bg-electric/20" />
+            Connect_Archive
+            <span className="w-8 h-[1px] bg-electric/20" />
           </div>
-          <h2 className="text-5xl md:text-[8rem] font-black leading-[0.82] tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-[7.5rem] font-black leading-[0.82] tracking-tighter uppercase">
             <KineticText text="SAY HELLO" />
           </h2>
         </motion.div>
 
         <motion.div 
           style={{ rotateX, rotateY, z: gridZ }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 stage-3d text-left"
+          className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-16 stage-3d text-left"
         >
-          <div className="space-y-3 md:space-y-4">
-            <div className="hidden md:block space-y-2 mb-4 md:mb-8">
-               <h4 className="text-ghost/20 font-mono text-[10px] uppercase tracking-[0.5em]">Network_Endpoints</h4>
-               <div className="h-[1px] w-full bg-white/5" />
-            </div>
-            
+          <div className="space-y-4">
             {contactMethods.map((method) => (
               <a
                 key={method.href}
@@ -92,20 +86,20 @@ export default function Contact() {
                 rel={method.external ? "noreferrer" : undefined}
                 className="block cursor-pointer outline-none relative z-50 pointer-events-auto"
               >
-                <MagneticTarget strength={12} className="rounded-2xl">
+                <MagneticTarget strength={10} className="rounded-2xl">
                   <SpotlightReveal className="rounded-2xl">
                     <motion.div
-                      whileHover={{ x: 16, z: 100, backgroundColor: "rgba(255,255,255,0.05)" }}
-                      className="relative z-20 flex items-center gap-3 md:gap-4 p-3 md:p-5 border border-white/10 rounded-2xl transition-all group bg-white/[0.035] hover:border-electric/45 stage-3d"
+                      whileHover={{ x: 10, backgroundColor: "rgba(255,255,255,0.05)" }}
+                      className="relative z-20 flex items-center gap-4 p-5 md:p-7 border border-white/10 rounded-2xl transition-all group bg-white/[0.025] hover:border-electric/40 stage-3d"
                     >
-                      <div className="w-10 h-10 md:w-14 md:h-14 flex-shrink-0 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-center group-hover:border-electric/50 transition-all">
-                        <method.icon className={`w-5 h-5 md:w-6 md:h-6 ${method.color} group-hover:scale-110 transition-transform`} />
+                      <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-center group-hover:border-electric/50 transition-all">
+                        <method.icon className={`w-5 h-5 md:w-7 md:h-7 ${method.color} group-hover:scale-110 transition-transform`} />
                       </div>
                       <div className="min-w-0">
-                        <span className="text-[8px] md:text-[10px] font-mono text-ghost/25 uppercase tracking-[0.24em] md:tracking-[0.3em] block mb-1">{method.label}</span>
-                        <span className="text-sm md:text-lg font-black text-ghost/80 group-hover:text-white normal-case tracking-tight break-words leading-snug">{method.value}</span>
+                        <span className="text-[9px] font-mono text-ghost/20 uppercase tracking-[0.3em] block mb-1">{method.label}</span>
+                        <span className="text-sm md:text-xl font-black text-ghost/80 group-hover:text-white normal-case tracking-tight break-words leading-none">{method.value}</span>
                       </div>
-                      {method.external && <ExternalLink className="ml-auto w-4 h-4 text-ghost/25 group-hover:text-electric transition-colors" />}
+                      {method.external && <ExternalLink className="ml-auto w-4 h-4 text-ghost/20 group-hover:text-electric transition-colors" />}
                     </motion.div>
                   </SpotlightReveal>
                 </MagneticTarget>
@@ -114,71 +108,48 @@ export default function Contact() {
           </div>
 
           <div className="relative group stage-3d hidden md:block">
-            <div className="absolute -inset-1 bg-gradient-to-r from-electric/15 to-royal/15 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative p-6 md:p-8 bg-white/[0.035] border border-white/10 rounded-2xl space-y-6 h-full">
-              <div className="flex justify-between items-center">
+            <div className="relative p-8 md:p-10 bg-white/[0.025] border border-white/10 rounded-3xl space-y-6 h-full flex flex-col">
+              <div className="flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-3">
                    <Shield className="w-4 h-4 text-electric/40" />
-                   <span className="text-[10px] font-mono text-electric uppercase tracking-widest">Protocol: Encrypted_Session</span>
+                   <span className="text-[10px] font-mono text-electric/60 uppercase tracking-widest">Protocol: Secure_Inquiry</span>
                 </div>
-                <div className="flex gap-1">
-                   {[...Array(3)].map((_, i) => <div key={i} className="w-1 h-1 rounded-full bg-electric animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
+                <div className="flex gap-1.5">
+                   {[...Array(3)].map((_, i) => <div key={i} className="w-1 h-1 rounded-full bg-electric/40 animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
                 </div>
               </div>
 
-              <div className="space-y-5">
-                <div className="space-y-2">
-                   <label htmlFor="inquiry-payload" className="text-[9px] font-mono text-ghost/40 uppercase tracking-widest ml-4">Message</label>
-                   <div className="relative h-40 md:h-52">
-                      <textarea
-                        id="inquiry-payload"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="> Type your message here..."
-                        className="w-full h-full bg-white/[0.03] border border-white/10 rounded-2xl p-6 md:p-8 font-mono text-sm text-ghost focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/50 transition-colors resize-none custom-scrollbar pointer-events-auto relative z-50 placeholder:text-ghost/30 placeholder:animate-pulse"
-                      />
-                      <motion.div 
-                        animate={{ opacity: [0, 1, 0] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                        className="absolute bottom-8 right-8 w-3 h-3 bg-electric/50 blur-sm rounded-full pointer-events-none"
-                      />
-                   </div>
-                </div>
+              <div className="flex-1 flex flex-col space-y-5">
+                 <textarea
+                   id="inquiry-payload"
+                   value={message}
+                   onChange={(e) => setMessage(e.target.value)}
+                   placeholder="> Initialize message payload..."
+                   className="w-full flex-1 bg-white/[0.02] border border-white/5 rounded-2xl p-8 font-mono text-sm text-ghost focus:border-electric/40 focus:outline-none focus:ring-0 transition-colors resize-none custom-scrollbar pointer-events-auto relative z-50 placeholder:text-ghost/20"
+                 />
 
                 <button
                   type="button"
                   onClick={() => {
                     window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=sreedevkrishna758@gmail.com&su=Contact+Inquiry&body=${encodeURIComponent(message)}`, '_blank');
                   }}
-                  className="w-full py-5 bg-ghost text-obsidian font-black uppercase tracking-[0.35em] rounded-2xl hover:bg-electric hover:text-white transition-all duration-500 flex items-center justify-center gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian relative z-50 pointer-events-auto"
+                  className="w-full py-6 bg-ghost text-obsidian font-black uppercase tracking-[0.45em] rounded-2xl hover:bg-electric hover:text-white transition-all duration-500 flex items-center justify-center gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/70 focus-visible:ring-offset-4 focus-visible:ring-offset-obsidian relative z-50 pointer-events-auto"
                 >
-                  <span className="text-xs">Send Mail</span>
+                  <span className="text-xs">Transmit Payload</span>
                   <SendIcon className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
                 </button>
-              </div>
-
-              <div className="pt-4 flex justify-center gap-8 opacity-20 group-hover:opacity-40 transition-opacity">
-                 <Zap className="w-4 h-4" />
-                 <span className="text-[8px] font-mono uppercase tracking-[0.5em]">Synchronizing...</span>
               </div>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Spatial Metadata */}
-      <div className="absolute bottom-16 left-16 flex flex-col gap-3 opacity-10 font-mono text-[9px] uppercase tracking-[0.5em]">
-        <div className="flex items-center gap-4">
-           <span className="w-8 h-[1px] bg-white" />
-           <span>Lat: 10.8505 | Long: 76.2711</span>
-        </div>
-        <div className="flex items-center gap-4">
-           <span className="w-8 h-[1px] bg-white" />
-           <span>Environment: v4.0.2_Spatial_Live</span>
-        </div>
+      <div className="absolute bottom-12 left-12 flex flex-col gap-2 opacity-10 font-mono text-[8px] uppercase tracking-[0.4em]">
+         <span>Lat: 10.8505 | Long: 76.2711</span>
+         <span>Environment: v4.0.2_Live</span>
       </div>
       
-      <div className="absolute bottom-16 right-16 opacity-10 font-mono text-[9px] uppercase tracking-[1em]">
+      <div className="absolute bottom-12 right-12 opacity-10 font-mono text-[8px] uppercase tracking-[0.6em]">
         [SREEDEV_KRISHNA_(c)_2026]
       </div>
     </section>
